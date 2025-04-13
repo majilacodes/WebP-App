@@ -1,0 +1,72 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <title>23BCE1067</title> 
+</head> 
+<body> 
+    <h1 id="t">Welcome to My Page</h1> 
+    <hr> 
+
+    <label>Enter email:</label> 
+    <input type="text" name="u"> 
+    <br><br> 
+
+    <label>Preferred Language:</label> 
+    <input type="radio" name="g" value="English"> English 
+    <input type="radio" name="g" value="French"> French 
+    <br><br> 
+
+    <p class="i">This is the first paragraph</p> 
+    <p class="i">Hope you have a great day ahead.</p> 
+    <p class="i">Keep smiling and stay positive!</p> 
+
+    <ul> 
+        <li>Wisdom</li> 
+        <li>Courage</li> 
+        <li>Kindness</li> 
+    </ul> 
+    <br> 
+
+    <input type="text" class="f" value="Box 1"> 
+    <input type="text" class="f" value="Box 2"> 
+    <br><br> 
+
+    <label>Interests:</label> 
+    <input type="checkbox" class="h" value="Art"> Art 
+    <input type="checkbox" class="h" value="Music"> Music 
+    <input type="checkbox" class="h" value="Photography"> Photography 
+
+    <script>
+        document.getElementById("t").textContent = "Welcome To My Page"; 
+
+        document.getElementsByName("u")[0].value = "user@example.com"; 
+
+        let r = document.getElementsByName("g"); 
+        for (let x of r) 
+            if (x.checked) 
+                console.log(x.value); 
+
+        console.log("Total <p> elements:", document.getElementsByTagName("p").length); 
+
+        let l = document.getElementsByTagName("ul")[0].getElementsByTagName("li"); 
+        for (let x of l) 
+            console.log("List item:", x.textContent); 
+
+        let f = document.getElementsByClassName("f"); 
+        for (let x of f) 
+            x.style.backgroundColor = "lightgreen"; 
+
+        document.querySelector(".i").textContent = "This is an updated paragraph."; 
+
+        document.querySelector("input[name='g']").checked = true; 
+
+        document.querySelectorAll(".i").forEach(x => 
+            console.log(x.textContent)); 
+
+        document.querySelectorAll(".h").forEach(x => { 
+            x.checked = true; 
+            console.log("Checked interest:", x.value); 
+        }); 
+    </script> 
+</body> 
+</html>

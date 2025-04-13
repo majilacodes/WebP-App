@@ -1,0 +1,126 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <title>23BCE1067</title> 
+    <style> 
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: #dde0c9; 
+            text-align: center; 
+        } 
+        .container { 
+            width: 40%; 
+            margin: auto; 
+            background: #798061; 
+            padding: 15px; 
+            border-radius: 10px; 
+            color: white; 
+            text-align: left; 
+        } 
+        .form-group { 
+            display: flex; 
+            justify-content: space-between; 
+            margin: 10px 0; 
+        } 
+        .form-group label { 
+            width: 40%; 
+            text-align: right; 
+            padding-right: 10px; 
+        } 
+        .form-group input { 
+            width: 55%; 
+            padding: 5px; 
+            border-radius: 5px; 
+        } 
+        .product { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            margin: 8px 0; 
+        } 
+        .submit-btn { 
+            background: #c29c68; 
+            color: white; 
+            padding: 8px; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            display: block; 
+            width: 100%; 
+            margin-top: 15px; 
+        } 
+    </style> 
+</head> 
+<body> 
+    <div class="container"> 
+        <h2 style="text-align: center;">Grocery Order Form</h2> 
+        <form id="orderForm"> 
+            <div class="form-group"> 
+                <label>Customer Name:</label> 
+                <input type="text" id="name"> 
+            </div> 
+            <div class="form-group"> 
+                <label>Phone Number:</label> 
+                <input type="text" id="phone"> 
+            </div> 
+            <div class="form-group"> 
+                <label>Email:</label> 
+                <input type="text" id="email"> 
+            </div> 
+ 
+            <h3 style="text-align: center;">Products</h3> 
+            <div class="product"> 
+                <input type="checkbox" id="apple" value="Apple" data-price="10"> 
+                <label>Apple - $10/kg</label> 
+                <input type="number" id="appleQty" min="1" max="10" disabled> 
+            </div> 
+            <div class="product"> 
+                <input type="checkbox" id="banana" value="Banana" data-price="5"> 
+                <label>Banana - $5/kg</label> 
+                <input type="number" id="bananaQty" min="1" max="10" disabled> 
+            </div> 
+            <div class="product"> 
+                <input type="checkbox" id="avocado" value="Avocado" data
+price="7"> 
+                <label>Avocado - $7/kg</label> 
+                <input type="number" id="avocadoQty" min="1" max="10" disabled> 
+            </div> 
+ 
+            <button type="button" class="submit-btn" 
+onclick="submitOrder()">SUBMIT</button> 
+        </form> 
+    </div> 
+ 
+    <script> 
+        function submitOrder() { 
+            let name = document.getElementById("name").value; 
+            let phone = document.getElementById("phone").value; 
+            let email = document.getElementById("email").value; 
+ 
+            let order = []; 
+            
+document.querySelectorAll('input[type="checkbox"]:checked').forEach(item => { 
+                let product = item.value; 
+                let quantity = document.getElementById(item.id + "Qty").value; 
+                let price = item.getAttribute("data-price"); 
+                order.push({ product, quantity, price }); 
+            }); 
+ 
+            let orderData = { name, phone, email, order }; 
+            localStorage.setItem("orderDetails", JSON.stringify(orderData)); 
+            window.location.href = "as-10-3-1.html"; 
+        } 
+ 
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => { 
+            checkbox.addEventListener("change", function() { 
+                let quantityInput = document.getElementById(this.id + "Qty"); 
+                quantityInput.disabled = !this.checked; 
+                if (!this.checked) quantityInput.value = ""; 
+            }); 
+        }); 
+    </script> 
+</body> 
+</html> 
+ 
+ 
+ 

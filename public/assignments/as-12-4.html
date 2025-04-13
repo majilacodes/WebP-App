@@ -1,0 +1,289 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>23BCE1067</title> 
+    <!-- Load Plotly.js --> 
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> 
+    <style> 
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 0; 
+            padding: 20px; 
+            background-color: #f5f5f5; 
+        } 
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        } 
+        .chart-row { 
+            display: flex; 
+            flex-wrap: wrap; 
+            margin: 0 -15px; 
+        } 
+        .chart-container { 
+            flex: 1 0 calc(50% - 30px); 
+            min-width: 500px; 
+            margin: 15px; 
+            background-color: white; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+            border-radius: 5px; 
+            padding: 15px; 
+        } 
+        h1 { 
+            text-align: center; 
+            color: #333; 
+            margin-bottom: 30px; 
+        } 
+        h2 { 
+            color: #444; 
+            margin-top: 0; 
+        } 
+        @media (max-width: 1100px) { 
+            .chart-container { 
+                flex: 1 0 calc(100% - 30px); 
+            } 
+        } 
+    </style> 
+</head> 
+<body> 
+    <div class="container"> 
+        <h1>Dynamic Charts with Plotly.js</h1> 
+         
+        <div class="chart-row"> 
+            <div class="chart-container"> 
+                <h2>Monthly Sales Performance</h2> 
+                <div id="barChart"></div> 
+            </div> 
+             
+            <div class="chart-container"> 
+                <h2>Year-to-Date Growth</h2> 
+                <div id="lineChart"></div> 
+            </div> 
+        </div> 
+         
+        <div class="chart-row"> 
+            <div class="chart-container"> 
+                <h2>Revenue by Product Category</h2> 
+                <div id="pieChart"></div> 
+            </div> 
+             
+            <div class="chart-container"> 
+                <h2>Market Share Distribution</h2> 
+                <div id="donutChart"></div> 
+            </div> 
+        </div> 
+    </div> 
+ 
+    <script> 
+        // Sample data for charts 
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 
+'Sep']; 
+        const salesData = [42, 58, 69, 53, 86, 77, 93, 88, 95]; 
+        const growthData = [10, 15, 12, 20, 25, 23, 30, 35, 40]; 
+         
+        const productCategories = ['Electronics', 'Clothing', 'Furniture', 
+'Books', 'Food']; 
+        const revenueData = [35, 25, 20, 10, 15]; 
+         
+        const marketShareLabels = ['Our Company', 'Competitor A', 'Competitor B', 
+'Competitor C', 'Others']; 
+        const marketShareData = [30, 25, 20, 15, 10]; 
+ 
+        // Color sets for charts 
+        const barColors = ['#5DA5DA', '#60BD68', '#F15854', '#FAA43A', '#B276B2', 
+'#8D4DDA', '#DECF3F', '#F17CB0', '#66E3D9']; 
+        const lineColor = '#FF9933'; 
+        const pieColors = ['#2E86C1', '#28B463', '#E74C3C', '#F4D03F', 
+'#BB8FCE']; 
+        const donutColors = ['#3498DB', '#16A085', '#F39C12', '#E74C3C', 
+'#8E44AD']; 
+ 
+        // Function to create responsive layout 
+        function getResponsiveLayout(title) { 
+            return { 
+                title: { 
+                    text: title, 
+                    font: { 
+                        family: 'Arial, sans-serif', 
+                        size: 20 
+                    } 
+                }, 
+                autosize: true, 
+                margin: { 
+                    l: 50, 
+                    r: 50, 
+                    b: 80, 
+                    t: 80, 
+                    pad: 4 
+                }, 
+                paper_bgcolor: 'white', 
+                plot_bgcolor: '#f8f8f8', 
+                font: { 
+                    family: 'Arial, sans-serif', 
+                    size: 12, 
+                    color: '#444' 
+                } 
+            }; 
+        } 
+ 
+        // Create Bar Chart 
+        function createBarChart() { 
+            const trace = { 
+                x: months, 
+                y: salesData, 
+                type: 'bar', 
+                marker: { 
+                    color: barColors, 
+                    line: { 
+                        color: '#444', 
+                        width: 1 
+                    } 
+                }, 
+                text: salesData.map(String), 
+                textposition: 'auto', 
+                hoverinfo: 'x+y', 
+                name: 'Monthly Sales' 
+            }; 
+ 
+            const layout = { 
+                ...getResponsiveLayout('Monthly Sales Performance'), 
+                xaxis: { 
+                    title: 'Month', 
+                    tickangle: -45 
+                }, 
+                yaxis: { 
+                    title: 'Sales (thousands $)' 
+                }, 
+                bargap: 0.3 
+            }; 
+ 
+            Plotly.newPlot('barChart', [trace], layout, {responsive: true}); 
+        } 
+ 
+        // Create Line Chart 
+        function createLineChart() { 
+            const trace = { 
+                x: months, 
+                y: growthData, 
+                type: 'scatter', 
+                mode: 'lines+markers', 
+                marker: { 
+                    color: lineColor, 
+                    size: 10, 
+                    symbol: 'circle', 
+                    line: { 
+                        color: '#fff', 
+                        width: 2 
+                    } 
+                }, 
+                line: { 
+                    color: lineColor, 
+                    width: 3 
+                }, 
+                name: 'Growth Rate' 
+            }; 
+ 
+            const layout = { 
+                ...getResponsiveLayout('Year-to-Date Growth'), 
+                xaxis: { 
+                    title: 'Month' 
+                }, 
+                yaxis: { 
+                    title: 'Growth Rate (%)', 
+                    range: [0, Math.max(...growthData) * 1.2] 
+                } 
+            }; 
+ 
+            Plotly.newPlot('lineChart', [trace], layout, {responsive: true}); 
+        } 
+ 
+        // Create Pie Chart 
+        function createPieChart() { 
+            const trace = { 
+                labels: productCategories, 
+                values: revenueData, 
+                type: 'pie', 
+                textinfo: 'label+percent', 
+                textposition: 'inside', 
+                marker: { 
+                    colors: pieColors 
+                }, 
+                insidetextorientation: 'radial', 
+                hoverinfo: 'label+value+percent', 
+                hole: 0 
+            }; 
+ 
+            const layout = { 
+                ...getResponsiveLayout('Revenue by Product Category'), 
+                showlegend: true, 
+                legend: { 
+                    orientation: 'h', 
+                    y: -0.2 
+                } 
+            }; 
+ 
+            Plotly.newPlot('pieChart', [trace], layout, {responsive: true}); 
+        } 
+ 
+        // Create Donut Chart 
+        function createDonutChart() { 
+            const trace = { 
+                labels: marketShareLabels, 
+                values: marketShareData, 
+                type: 'pie', 
+                textinfo: 'label+percent', 
+                textposition: 'inside', 
+                marker: { 
+                    colors: donutColors 
+                }, 
+                insidetextorientation: 'radial', 
+                hoverinfo: 'label+value+percent', 
+                hole: 0.4 
+            }; 
+ 
+            const layout = { 
+                ...getResponsiveLayout('Market Share Distribution'), 
+                annotations: [{ 
+                    font: { 
+                        size: 14 
+                    }, 
+                    showarrow: false, 
+                    text: 'Market<br>Share', 
+                    x: 0.5, 
+                    y: 0.5 
+                }], 
+                showlegend: true, 
+                legend: { 
+                    orientation: 'h', 
+                    y: -0.2 
+                } 
+            }; 
+ 
+            Plotly.newPlot('donutChart', [trace], layout, {responsive: true}); 
+        } 
+        // Initialize all charts when the page loads 
+        document.addEventListener('DOMContentLoaded', function() { 
+            createBarChart(); 
+            createLineChart(); 
+            createPieChart(); 
+            createDonutChart(); 
+             
+            // Make charts responsive when window is resized 
+            window.addEventListener('resize', function() { 
+                Plotly.relayout('barChart', { 
+                    'xaxis.autorange': true, 
+                    'yaxis.autorange': true 
+                }); 
+                Plotly.relayout('lineChart', { 
+                    'xaxis.autorange': true, 
+                    'yaxis.autorange': true 
+                }); 
+                Plotly.relayout('pieChart', {'autosize': true}); 
+                Plotly.relayout('donutChart', {'autosize': true}); 
+            }); 
+        }); 
+    </script> 
+</body> 
+</html> 

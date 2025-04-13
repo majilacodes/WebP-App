@@ -1,0 +1,67 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>23BCE1067</title> 
+    <style> 
+        body { text-align: center; font-family: Arial, sans-serif; } 
+        table { margin: auto; border-collapse: collapse; width: 40%; } 
+        th, td { border: 1px solid black; padding: 8px; text-align: center; } 
+        th { background-color: #f2f2f2; } 
+        h2 { border-bottom: 2px solid black; padding-bottom: 5px; } 
+    </style> 
+</head> 
+<body> 
+    <h2>Hospital Patient Data</h2> 
+
+    <button onclick="s()">Sort by Age (Descending)</button> 
+    <input type="number" id="i1" placeholder="Enter Pid"> 
+    <button onclick="c()">Search Patient</button> 
+    <input type="number" id="i2" placeholder="Min Age"> 
+    <input type="number" id="i3" placeholder="Max Age"> 
+    <button onclick="f()">Filter by Age</button> 
+
+    <h3 id="o1"></h3> 
+    <table id="o2"></table> 
+
+    <script>
+        const p = [ 
+            { i: 1, n: "Alen", a: 39 }, 
+            { i: 2, n: "Deena", a: 47 }, 
+            { i: 3, n: "Diana", a: 21 }, 
+            { i: 4, n: "Jack", a: 54 }, 
+            { i: 5, n: "Jain", a: 23 }, 
+            { i: 6, n: "Kelvin", a: 61 }, 
+            { i: 7, n: "Louis", a: 69 }, 
+            { i: 8, n: "Rex", a: 49 } 
+        ]; 
+
+        function s() { 
+            const x = [...p].sort((y, z) => z.a - y.a); 
+            d(x); 
+        } 
+
+        function c() { 
+            const x = parseInt(document.getElementById("i1").value); 
+            const y = p.find(z => z.i === x); 
+            document.getElementById("o1").textContent = y ? `Found: ${y.n}, Age: ${y.a}` : "Not Found!"; 
+        } 
+
+        function f() { 
+            const x = parseInt(document.getElementById("i2").value); 
+            const y = parseInt(document.getElementById("i3").value); 
+            const z = p.filter(t => t.a >= x && t.a <= y); 
+            d(z); 
+        } 
+
+        function d(x) { 
+            const y = document.getElementById("o2"); 
+            y.innerHTML = "<tr><th>PID</th><th>NAME</th><th>AGE</th></tr>" +  
+                x.map(z => `<tr><td>${z.i}</td><td>${z.n}</td><td>${z.a}</td></tr>`).join(""); 
+        } 
+
+        window.onload = s;
+    </script>
+</body> 
+</html>

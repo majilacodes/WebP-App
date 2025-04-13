@@ -1,0 +1,92 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>23BCE1067</title> 
+    <style> 
+        table, th, td { 
+            border: 1px solid black; 
+            border-collapse: collapse; 
+            text-align: center; 
+            padding: 10px; 
+        } 
+    </style> 
+</head> 
+<body> 
+    <h3>Dynamic Table</h3> 
+    <div id="table-container"></div> 
+ 
+    <h3>Button Mouse Over Effect</h3> 
+    <button id="colorButton">Hover Me</button> 
+ 
+    <h3>Textbox Focus Effect</h3> 
+    <input type="text" id="textBox"> 
+    <p id="greeting"></p> 
+ 
+    <h3>Add Items to List</h3> 
+    <input type="text" id="listInput"> 
+    <button id="addItem">Add to List</button> 
+    <ul id="itemList"></ul> 
+ 
+    <h3>Keypress Counter</h3> 
+    <input type="text" id="keyInput"> 
+    <input type="text" id="counterInput" readonly> 
+ 
+    <script> 
+        // (i) Create Dynamic Table 
+        let tableContainer = document.getElementById("table-container"); 
+        let table = document.createElement("table"); 
+        for (let i = 0; i < 3; i++) { 
+            let row = document.createElement("tr"); 
+            for (let j = 0; j < 3; j++) { 
+                let cell = document.createElement("td"); 
+                cell.textContent = `Row ${i + 1} Col ${j + 1}`; 
+                row.appendChild(cell); 
+            } 
+            table.appendChild(row); 
+        } 
+        tableContainer.appendChild(table); 
+ 
+        // (ii) Button Mouse Over Effect 
+        let colorButton = document.getElementById("colorButton"); 
+        colorButton.style.backgroundColor = "red"; 
+        colorButton.addEventListener("mouseover", function() { 
+            this.style.backgroundColor = "green"; 
+        }); 
+ 
+        // (iii) Textbox Focus Effect 
+        let textBox = document.getElementById("textBox"); 
+        let greeting = document.getElementById("greeting"); 
+        textBox.style.backgroundColor = "green"; 
+        textBox.addEventListener("focus", function() { 
+            this.style.backgroundColor = "yellow"; 
+        }); 
+        textBox.addEventListener("change", function() { 
+            greeting.textContent = "Hello, welcome!"; 
+        }); 
+ 
+        // (iv) Add Items to List on Double Click 
+        let listInput = document.getElementById("listInput"); 
+        let addItemButton = document.getElementById("addItem"); 
+        let itemList = document.getElementById("itemList"); 
+        addItemButton.addEventListener("dblclick", function() { 
+            if (listInput.value.trim() !== "") { 
+                let listItem = document.createElement("li"); 
+                listItem.textContent = listInput.value; 
+                itemList.appendChild(listItem); 
+                listInput.value = ""; 
+            } 
+        }); 
+ 
+        // (v) Keypress Counter 
+        let keyInput = document.getElementById("keyInput"); 
+        let counterInput = document.getElementById("counterInput"); 
+        let count = 0; 
+        keyInput.addEventListener("keypress", function() { 
+            count++; 
+            counterInput.value = count; 
+        }); 
+    </script> 
+</body> 
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>23BCE1067</title> 
+</head> 
+<body> 
+    <script> 
+        let ratePerHour = 45; 
+        let hoursWorked = prompt("Enter the number of hours worked:"); 
+        let materialsCost = prompt("Enter the cost of materials used:"); 
+ 
+        if (hoursWorked === null || materialsCost === null || hoursWorked.trim() 
+=== "" || materialsCost.trim() === "") { 
+            alert("Invalid input. Please enter valid values."); 
+        } else { 
+            hoursWorked = Number(hoursWorked); 
+            materialsCost = Number(materialsCost); 
+ 
+            if (isNaN(hoursWorked) || isNaN(materialsCost)) { 
+                alert("Please enter numeric values only."); 
+            } else { 
+                let labourCost = ratePerHour * hoursWorked; 
+                let totalCharge = labourCost + materialsCost; 
+ 
+                alert("Labour Cost: Rs" + labourCost + "\nTotal Charge: Rs" + 
+totalCharge); 
+            } 
+        } 
+    </script> 
+</body> 
+</html> 

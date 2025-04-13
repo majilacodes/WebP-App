@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>23BCE1067</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .slider-container {
+            margin: 20px 0;
+        }
+        .slider-row {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            gap: 10px;
+        }
+        .slider-label {
+            width: 120px;
+        }
+        input[type="range"] {
+            flex: 1;
+        }
+        .value-display {
+            width: 50px;
+            text-align: right;
+        }
+        .total-section {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+        .slider-value {
+            display: inline-block;
+            width: 40px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <h2>Product Feedback</h2>
+    <form>
+        <div class="slider-container">
+            <div class="slider-row">
+                <span class="slider-label">Quality:</span>
+                <input type="range" id="quality" min="0" max="10" value="5" 
+                       oninput="this.nextElementSibling.value = this.value; updateTotal()">
+                <output class="slider-value">5</output>
+            </div>
+
+            <div class="slider-row">
+                <span class="slider-label">Usability:</span>
+                <input type="range" id="usability" min="0" max="10" value="5" 
+                       oninput="this.nextElementSibling.value = this.value; updateTotal()">
+                <output class="slider-value">5</output>
+            </div>
+
+            <div class="slider-row">
+                <span class="slider-label">Value for Money:</span>
+                <input type="range" id="value" min="0" max="10" value="5" 
+                       oninput="this.nextElementSibling.value = this.value; updateTotal()">
+                <output class="slider-value">5</output>
+            </div>
+
+            <div class="total-section">
+                <strong>Total Score: </strong>
+                <output id="total">15</output> / 30
+            </div>
+        </div>
+    </form>
+
+    <script>
+        function updateTotal() {
+            const quality = parseInt(document.getElementById('quality').value);
+            const usability = parseInt(document.getElementById('usability').value);
+            const value = parseInt(document.getElementById('value').value);
+            const total = quality + usability + value;
+            document.getElementById('total').value = total;
+        }
+    </script>
+</body>
+</html>

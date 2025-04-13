@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>23BCE1067</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      border: 1px solid black;
+      padding: 15px;
+    }
+    h1 {
+      margin-top: 0;
+    }
+    .form-row {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    .form-row label {
+      width: 150px;
+      text-align: left;
+    }
+    .form-row input[type="text"],
+    .form-row input[type="password"],
+    .form-row select {
+      width: 200px;
+      padding: 5px;
+    }
+    .form-row .error-message {
+      color: red;
+      margin-left: 10px;
+    }
+    .time-display {
+      float: right;
+      border: 1px solid black;
+      padding: 5px 10px;
+    }
+    .radio-group, .checkbox-group {
+      display: flex;
+      gap: 15px;
+    }
+    .button-group {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .button-group button {
+      margin: 0 10px;
+      padding: 5px 20px;
+    }
+    #formData {
+      margin-top: 20px;
+      border-top: 1px solid #ccc;
+      padding-top: 15px;
+    }
+    .mandatory {
+      color: red;
+    }
+    .pan-field {
+      margin-left: 50px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="time-display" id="currentTime">Time: 11:30:55</div>
+    <h1>Test JavaScript Form Validation</h1>
+    
+    <form id="registrationForm" onsubmit="return validateForm()">
+      <!-- Name Field -->
+      <div class="form-row">
+        <label for="name">Name<span class="mandatory">*</span></label>
+        <input type="text" id="name" name="name" onblur="validateField('name')">
+        <span class="error-message" id="nameError"></span>
+      </div>
+      
+      <!-- Address Field -->
+      <div class="form-row">
+        <label for="address">Address</label>
+        <input type="text" id="address" name="address">
+      </div>
+      
+      <!-- Zip Code Field -->
+      <div class="form-row">
+        <label for="zipcode">Zip Code<span class="mandatory">*</span></label>
+        <input type="text" id="zipcode" name="zipcode" onblur="validateField('zipcode')">
+        <span class="error-message" id="zipcodeError"></span>
+      </div>
+      
+      <!-- Country Field -->
+      <div class="form-row">
+        <label for="country">Country<span class="mandatory">*</span></label>
+        <select id="country" name="country" onblur="validateField('country')">
+          <option value="">Please select...</option>
+          <option value="usa">USA</option>
+          <option value="canada">Canada</option>
+          <option value="uk">UK</option>
+          <option value="australia">Australia</option>
+          <option value="india">India</option>
+          <option value="japan">Japan</option>
+          <option value="germany">Germany</option>
+          <option value="france">France</option>
+        </select>
+        <span class="error-message" id="countryError"></span>
+      </div>
+      
+      <!-- Gender Field -->
+      <div class="form-row">
+        <label>Gender<span class="mandatory">*</span></label>
+        <div class="radio-group">
+          <label><input type="radio" name="gender" value="male" onclick="validateField('gender')"> Male</label>
+          <label><input type="radio" name="gender" value="female" onclick="validateField('gender')"> Female</label>
+        </div>
+        <span class="error-message" id="genderError"></span>
+        
+        <!-- PAN Card Field -->
+        <div class="pan-field">
+          <label for="pan">Pan No:</label>
+          <input type="text" id="pan" name="pan" onblur="validateField('pan')">
+          <span class="error-message" id="panError"></span>
+        </div>
+      </div>
+      
+      <!-- Preferences Field -->
+      <div class="form-row">
+        <label>Preferences<span class="mandatory">*</span></label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="preferences" value="red" onclick="validateField('preferences')"> Red</label>
+          <label><input type="checkbox" name="preferences" value="green" onclick="validateField('preferences')"> Green</label>
+          <label><input type="checkbox" name="preferences" value="blue" onclick="validateField('preferences')"> Blue</label>
+        </div>
+        <span class="error-message" id="preferencesError"></span>
+      </div>
+      
+      <!-- Phone Field -->
+      <div class="form-row">
+        <label for="phone">Phone<span class="mandatory">*</span></label>
+        <input type="text" id="phone" name="phone" onblur="validateField('phone')">
+        <span class="error-message" id="phoneError"></span>
+      </div>
+      
+      <!-- Email Field -->
+      <div class="form-row">
+        <label for="email">Email<span class="mandatory">*</span></label>
+        <input type="text" id="email" name="email" onblur="validateField('email')">
+        <span class="error-message" id="emailError"></span>
+      </div>
+      
+      <!-- Password Field -->
+      <div class="form-row">
+        <label for="password">password (6-8 characters)<span class="mandatory">*</span></label>
+        <input type="password" id="password" name="password" onblur="validateField('password')">
+        <span class="error-message" id="passwordError"></span>
+      </div>
+      
+      <!-- Verify Password Field -->
+      <div class="form-row">
+        <label for="verifyPassword">Verify password<span class="mandatory">*</span></label>
+        <input type="password" id="verifyPassword" name="verifyPassword" onblur="validateField('verifyPassword')">
+        <span class="error-message" id="verifyPasswordError"></span>
+      </div>
+      
+      <!-- Buttons -->
+      <div class="button-group">
+        <button type="submit">SEND</button>
+        <button type="reset">CLEAR</button>
+      </div>
+    </form>
+    
+    <!-- Display Form Data -->
+    <div id="formData"></div>
+  </div>
+
+  <script>
+    // Function to update the timer
+    function updateTime() {
+      const now = new Date();
+      let hours = now.getHours();
+      let minutes = now.getMinutes();
+      let seconds = now.getSeconds();
+      
+      // Add leading zeros
+      hours = hours < 10 ? '0' + hours : hours;
+      minutes = minutes < 10 ? '0' + minutes : minutes;
+      seconds = seconds < 10 ? '0' + seconds : seconds;
+      
+      const timeStr = hours + ':' + minutes + ':' + seconds;
+      document.getElementById('currentTime').textContent = 'Time:' + timeStr;
+    }
+    
+    // Update time immediately and then every second
+    updateTime();
+    setInterval(updateTime, 1000);
+    
+    // Validate individual field
+    function validateField(fieldName) {
+      let isValid = true;
+      let errorMessage = '';
+      
+      switch(fieldName) {
+        case 'name':
+          const name = document.getElementById('name').value.trim();
+          if (!name) {
+            errorMessage = 'Please enter your name!';
+            isValid = false;
+          } else if (name.length > 15) {
+            errorMessage = 'Name should not exceed 15 characters!';
+            isValid = false;
+          }
+          break;
+          
+        case 'zipcode':
+          const zipcode = document.getElementById('zipcode').value.trim();
+          if (!zipcode) {
+            errorMessage = 'Please enter zip code!';
+            isValid = false;
+          } else if (!/^\d+$/.test(zipcode)) {
+            errorMessage = 'Zip code should be numeric!';
+            isValid = false;
+          }
+          break;
+          
+        case 'country':
+          if (!document.getElementById('country').value) {
+            errorMessage = 'Please select a country!';
+            isValid = false;
+          }
+          break;
+          
+        case 'gender':
+          if (!document.querySelector('input[name="gender"]:checked')) {
+            errorMessage = 'Please select your gender!';
+            isValid = false;
+          }
+          break;
+          
+        case 'preferences':
+          const checkboxes = document.getElementsByName('preferences');
+          let checked = false;
+          for (let i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+              checked = true;
+              break;
+            }
+          }
+          if (!checked) {
+            errorMessage = 'Please select at least one preference!';
+            isValid = false;
+          }
+          break;
+          
+        case 'phone':
+          const phone = document.getElementById('phone').value.trim();
+          if (!phone) {
+            errorMessage = 'Please enter your phone number!';
+            isValid = false;
+          } else if (!/^\d{10}$/.test(phone)) {
+            errorMessage = 'Phone should be a 10-digit number!';
+            isValid = false;
+          }
+          break;
+          
+        case 'email':
+          const email = document.getElementById('email').value.trim();
+          if (!email) {
+            errorMessage = 'Please enter your email!';
+            isValid = false;
+          } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            errorMessage = 'Please enter a valid email address!';
+            isValid = false;
+          }
+          break;
+          
+        case 'password':
+          const password = document.getElementById('password').value;
+          if (!password) {
+            errorMessage = 'Please enter a password!';
+            isValid = false;
+          } else if (password.length < 6 || password.length > 8) {
+            errorMessage = 'Password should be between 6 and 8 characters!';
+            isValid = false;
+          } else if (!/(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?])/.test(password)) {
+            errorMessage = 'Password must include a number, letter, and special character!';
+            isValid = false;
+          }
+          break;
+          
+        case 'verifyPassword':
+          const verifyPassword = document.getElementById('verifyPassword').value;
+          const originalPassword = document.getElementById('password').value;
+          if (!verifyPassword) {
+            errorMessage = 'Please confirm your password!';
+            isValid = false;
+          } else if (verifyPassword !== originalPassword) {
+            errorMessage = 'Passwords do not match!';
+            isValid = false;
+          }
+          break;
+          
+        case 'pan':
+          const pan = document.getElementById('pan').value.trim();
+          if (pan && !/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(pan)) {
+            errorMessage = 'PAN should be in format: ABCDE1234F';
+            isValid = false;
+          }
+          break;
+      }
+      
+      // Display error message
+      const errorElement = document.getElementById(fieldName + 'Error');
+      if (errorElement) {
+        errorElement.textContent = errorMessage;
+      }
+      
+      return isValid;
+    }
+    
+    // Form validation function
+    function validateForm() {
+      const fields = ['name', 'zipcode', 'country', 'gender', 'preferences', 'phone', 'email', 'password', 'verifyPassword'];
+      let isFormValid = true;
+      
+      // Validate each required field
+      for (const field of fields) {
+        if (!validateField(field)) {
+          isFormValid = false;
+          // Focus on the first invalid field
+          if (field !== 'gender' && field !== 'preferences') {
+            document.getElementById(field).focus();
+          }
+          break;
+        }
+      }
+      
+      // If form is valid, display the form data
+      if (isFormValid) {
+        displayFormData();
+      }
+      
+      return false; // Prevent actual form submission
+    }
+    
+    // Function to display form data
+    function displayFormData() {
+      const formData = document.getElementById('formData');
+      
+      // Basic fields
+      let formContent = '<h2>Form Data:</h2>';
+      formContent += '<p><strong>Name:</strong> ' + document.getElementById('name').value + '</p>';
+      formContent += '<p><strong>Address:</strong> ' + document.getElementById('address').value + '</p>';
+      formContent += '<p><strong>Zip Code:</strong> ' + document.getElementById('zipcode').value + '</p>';
+      
+      // Country
+      const countrySelect = document.getElementById('country');
+      const selectedCountry = countrySelect.options[countrySelect.selectedIndex].text;
+      formContent += '<p><strong>Country:</strong> ' + selectedCountry + '</p>';
+      
+      // Gender
+      const genders = document.getElementsByName('gender');
+      let selectedGender = '';
+      for (let i = 0; i < genders.length; i++) {
+        if (genders[i].checked) {
+          selectedGender = genders[i].value;
+          break;
+        }
+      }
+      formContent += '<p><strong>Gender:</strong> ' + selectedGender + '</p>';
+      
+      // PAN
+      formContent += '<p><strong>PAN Card Number:</strong> ' + document.getElementById('pan').value + '</p>';
+      
+      // Preferences
+      const preferences = document.getElementsByName('preferences');
+      let selectedPrefs = [];
+      for (let i = 0; i < preferences.length; i++) {
+        if (preferences[i].checked) {
+          selectedPrefs.push(preferences[i].value);
+        }
+      }
+      formContent += '<p><strong>Preferences:</strong> ' + (selectedPrefs.length > 0 ? selectedPrefs.join(', ') : 'None selected') + '</p>';
+      
+      formContent += '<p><strong>Phone:</strong> ' + document.getElementById('phone').value + '</p>';
+      formContent += '<p><strong>Email:</strong> ' + document.getElementById('email').value + '</p>';
+      formContent += '<p><strong>Password:</strong> ' + '*'.repeat(document.getElementById('password').value.length) + '</p>';
+      
+      formData.innerHTML = formContent;
+      formData.style.display = 'block';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>23BCE1067</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            max-width: 300px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="password"],
+        select {
+            width: 200px;
+            padding: 5px;
+        }
+        textarea {
+            width: 290px;
+            height: 100px;
+        }
+        .required {
+            color: red;
+        }
+        .fruit-groups {
+            margin-top: 20px;
+            max-width: 300px;
+        }
+        .fruit-groups ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        .radio-group,
+        .checkbox-group {
+            margin-bottom: 5px;
+        }
+        button {
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <div class="form-group">
+            <div style="font-weight: bold; margin-bottom: 10px;">Login</div>
+            <div>
+                <label>Username<span class="required">*</span></label>
+                <input type="text" name="username" required>
+            </div>
+            <div>
+                <label>Password<span class="required">*</span></label>
+                <input type="password" name="password" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Gender<span class="required">*</span></label>
+            <input type="radio" name="gender" value="male" id="male">
+            <label for="male">Male</label>
+            <input type="radio" name="gender" value="female" id="female">
+            <label for="female">Female</label>
+        </div>
+
+        <div class="form-group">
+            <label>Programming Skill</label>
+            <input type="checkbox" name="skill" value="java" id="java">
+            <label for="java">Java</label>
+            <input type="checkbox" name="skill" value="cpp" id="cpp">
+            <label for="cpp">C++</label>
+            <input type="checkbox" name="skill" value="csharp" id="csharp">
+            <label for="csharp">C#</label>
+        </div>
+
+        <div class="form-group">
+            <label>Fruit</label>
+            <select name="fruit">
+                <option value="">Choose a fruit:</option>
+                <optgroup label="Pome">
+                    <option value="apple">Apple</option>
+                    <option value="pear">Pear</option>
+                </optgroup>
+                <optgroup label="Citrus">
+                    <option value="orange">Orange</option>
+                    <option value="grapefruit">Grapefruit</option>
+                    <option value="mandarin">Mandarin</option>
+                    <option value="lime">Lime</option>
+                </optgroup>
+                <optgroup label="Stone">
+                    <option value="nectarine">Nectarine</option>
+                    <option value="apricot">Apricot</option>
+                    <option value="peach">Peach</option>
+                    <option value="plum">Plum</option>
+                </optgroup>
+                <optgroup label="Exotic">
+                    <option value="banana">Banana</option>
+                    <option value="mango">Mango</option>
+                </optgroup>
+                <optgroup label="Berries">
+                    <option value="strawberry">Strawberry</option>
+                    <option value="raspberry">Raspberry</option>
+                    <option value="blueberry">Blueberry</option>
+                    <option value="kiwifruit">Kiwifruit</option>
+                    <option value="passionfruit">Passionfruit</option>
+                </optgroup>
+                <optgroup label="Melons">
+                    <option value="watermelon">Watermelon</option>
+                    <option value="rockmelon">Rockmelon</option>
+                    <option value="honeydew">Honeydew Melon</option>
+                </optgroup>
+            </select>
+        </div>
+
+        <textarea placeholder="Enter your comment here"></textarea>
+
+        <div>
+            <button type="submit">SEND</button>
+            <button type="reset">RESET</button>
+        </div>
+    </form>
+</body>
+</html>

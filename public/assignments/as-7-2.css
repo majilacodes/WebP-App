@@ -1,0 +1,58 @@
+/* Rainbow animation for heading */
+@keyframes rainbowText {
+    0% { color: red; }
+    20% { color: orange; }
+    40% { color: yellow; }
+    60% { color: green; }
+    80% { color: blue; }
+    100% { color: violet; }
+  }
+  
+  .rainbow {
+    font-size: 2em;
+    animation: rainbowText 3s infinite;
+    text-align: center;
+  }
+  
+  /* Multi-column layout with 30pt line height */
+  .description {
+    column-count: 2;
+    line-height: 30pt;
+    margin: 20px;
+    font-size: 1.2em;
+  }
+  
+  /* Background image center alignment */
+  .background-center {
+    background-image: url('your-image.jpg'); /* Replace with your image file */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    height: 200px;
+  }
+  
+  /* SVG ball animation */
+  @keyframes playBall {
+    0% {
+      transform: translateX(0) rotate(0deg) skew(0deg, 0deg);
+    }
+    25% {
+      transform: translateX(50px) rotate(45deg) skew(10deg, 5deg);
+    }
+    50% {
+      transform: translateX(100px) rotate(90deg) skew(-10deg, -5deg);
+    }
+    75% {
+      transform: translateX(50px) rotate(135deg) skew(10deg, 5deg);
+    }
+    100% {
+      transform: translateX(0) rotate(180deg) skew(0deg, 0deg);
+    }
+  }
+  
+  .ball {
+    animation: playBall 4s infinite;
+    display: block;
+    margin: 20px auto;
+  }
+  
