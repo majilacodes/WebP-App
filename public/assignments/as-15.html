@@ -3,63 +3,644 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Exercise 3 - 23BCE1067</title>
+  <title>Exercise 15 - 23BCE1067</title>
+  <!-- Add React dependencies -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
   <style>
-    body {
-      background-color: #121212;
-      color: #f0f0f0;
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
+    .external-styled-button { 
+      background-color: purple; 
+      color: white; 
+      padding: 10px 20px; 
+      font-size: 16px; 
+      border: none; 
+      border-radius: 5px; 
+      cursor: pointer; 
+      margin: 10px; 
+      transition: background-color 0.3s; 
+    } 
+     
+    .external-styled-button:hover { 
+      background-color: darkpurple; 
+    } 
+     
+    .app-container { 
+      font-family: Arial, sans-serif; 
+      max-width: 960px; 
+      margin: 0 auto; 
+      padding: 20px; 
+    } 
+     
+    .navigation { 
+      display: flex; 
+      gap: 10px; 
+      margin-bottom: 20px; 
+      flex-wrap: wrap; 
+    } 
+     
+    .navigation button { 
+      padding: 8px 16px; 
+      background-color: #4CAF50; 
+      color: white; 
+      border: none; 
+      border-radius: 4px; 
+      cursor: pointer; 
+      transition: background-color 0.3s; 
+    } 
+     
+    .navigation button:hover { 
+      background-color: #45a049; 
+    } 
+     
+    .content-section { 
+      border: 1px solid #ddd; 
+      padding: 20px; 
+      border-radius: 5px; 
+      margin-bottom: 20px; 
+    } 
+     
+    form { 
+      max-width: 400px; 
+      margin: 20px 0; 
+    } 
+     
+    form div { 
+      margin-bottom: 15px; 
+    } 
+     
+    form input { 
+      width: 100%; 
+      padding: 8px; 
+      margin-top: 5px; 
+      border: 1px solid #ddd; 
+      border-radius: 4px; 
+    } 
+     
+    form button { 
+      padding: 10px 15px; 
+      background-color: #008CBA; 
+      color: white; 
+      border: none; 
+      border-radius: 4px; 
+      cursor: pointer; 
+    } 
+     
+    form button:hover { 
+      background-color: #0073aa; 
+    }
+
+    .image-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .image-gallery img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: transform 0.3s;
+    }
+
+    .image-gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    .user-profile {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+    }
+
+    .user-profile img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
+
+    .user-posts {
+      margin-top: 20px;
+    }
+
+    .user-posts ul {
+      list-style: none;
       padding: 0;
     }
 
-    .container {
-      max-width: 800px;
-      margin: auto;
-      padding: 40px 20px;
-    }
-
-    h1 {
-      text-align: center;
-      color: #00bcd4;
-      margin-bottom: 30px;
-    }
-
-    .link-box {
-      background-color: #1f1f1f;
-      padding: 20px;
-      margin: 15px 0;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-      transition: background-color 0.3s ease;
-    }
-
-    .link-box:hover {
-      background-color: #333;
-    }
-
-    .link-box a {
-      color: #90caf9;
-      text-decoration: none;
-      font-size: 1.2rem;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 40px;
-      color: #888;
+    .user-posts li {
+      background-color: #fff;
+      padding: 15px;
+      margin-bottom: 10px;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Exercise 11 Web Programming</h1>
+  <div id="root"></div>
+  
+  <!-- Load your React components -->
+  <script type="text/babel">
+    const { useState, useEffect, useReducer, useRef, useContext, createContext } = React;
 
-    <div class="link-box"><a href="as-11-1.html">Question 1 - Dynamic Table</a></div>
-    <div class="link-box"><a href="as-11-2.html">Question 2 - Dynamic Elements</a></div>
-    <div class="link-box"><a href="as-11-3.html">Question 3 - Validation Form</a></div>
-   </div>
+    const Header = ({ title }) => {
+      return (
+        <header style={{ backgroundColor: '#f1f1f1', padding: '20px', textAlign: 'center' }}>
+          <h1>{title}</h1>
+        </header>
+      );
+    };
 
-  <footer>Created by Mishti Mattu | 23BCE1067</footer>
+    const Content = () => {
+      const jokes = [
+        "Why don't scientists trust atoms? Because they make up everything!",
+        "Did you hear about the mathematician who's afraid of negative numbers? He'll stop at nothing to avoid them!",
+        "Why don't programmers like nature? It has too many bugs!",
+        "Why was the JavaScript developer sad? Because he didn't know how to 'null' his feelings!",
+        "Why do Java developers wear glasses? Because they don't C#!"
+      ];
+
+      const [joke, setJoke] = useState(jokes[0]);
+
+      const getRandomJoke = () => {
+        const randomIndex = Math.floor(Math.random() * jokes.length);
+        setJoke(jokes[randomIndex]);
+      };
+
+      return (
+        <div style={{ padding: '20px', minHeight: '60vh' }}>
+          <p>{joke}</p>
+          <button onClick={getRandomJoke}>Get Random Joke</button>
+        </div>
+      );
+    };
+
+    const Footer = () => {
+      return (
+        <footer style={{ backgroundColor: '#f8f8f8', padding: '10px', textAlign: 'center' }}>
+          <p>© 2025 React Exercise App - All Rights Reserved</p>
+        </footer>
+      );
+    };
+
+    const StyledButtonInline = () => {
+      return (
+        <button
+          style={{
+            backgroundColor: 'blue',
+            color: 'white',
+            padding: '10px 20px',
+            fontSize: '16px',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            margin: '10px'
+          }}
+        >
+          Inline Styled Button
+        </button>
+      );
+    };
+
+    const StyledButtonInternal = () => {
+      return (
+        <>
+          <style>
+            {`
+              .internal-styled-button {
+                background-color: green;
+                color: white;
+                padding: 10px 20px;
+                font-size: 16px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                margin: 10px;
+              }
+              .internal-styled-button:hover {
+                background-color: darkgreen;
+              }
+            `}
+          </style>
+          <button className="internal-styled-button">Internal Styled Button</button>
+        </>
+      );
+    };
+
+    const StyledButtonExternal = () => {
+      return <button className="external-styled-button">External Styled Button</button>;
+    };
+
+    class LifecycleDemo extends React.Component {
+      constructor(props) {
+        super(props);
+        this.state = { count: 0 };
+        console.log('Constructor: Component is being initialized');
+      }
+
+      componentDidMount() {
+        console.log('ComponentDidMount: Component has been mounted to the DOM');
+      }
+
+      componentDidUpdate() {
+        console.log('ComponentDidUpdate: Component has been updated');
+      }
+
+      componentWillUnmount() {
+        console.log('ComponentWillUnmount: Component is about to be removed from the DOM');
+      }
+
+      updateState = () => {
+        this.setState({ count: this.state.count + 1 });
+      };
+
+      render() {
+        return (
+          <div style={{ border: '1px solid black', padding: '10px', margin: '10px' }}>
+            <h3>Lifecycle Demo</h3>
+            <p>Count: {this.state.count}</p>
+            <button onClick={this.updateState}>Update State</button>
+          </div>
+        );
+      }
+    }
+
+    const Parent = () => {
+      const message = "Hello from Parent!";
+      return (
+        <div style={{ border: '1px solid black', padding: '10px', margin: '10px' }}>
+          <h3>Parent Component</h3>
+          <Child message={message} />
+        </div>
+      );
+    };
+
+    const Child = ({ message }) => {
+      return (
+        <div style={{ border: '1px solid blue', padding: '10px', margin: '10px' }}>
+          <h4>Child Component</h4>
+          <p>Message from parent: {message}</p>
+        </div>
+      );
+    };
+
+    const ValidatedChild = ({ message }) => {
+      if (!message) {
+        return <div>Error: Message prop is required!</div>;
+      }
+      
+      if (typeof message !== 'string') {
+        return <div>Error: Message prop must be a string!</div>;
+      }
+      
+      return (
+        <div style={{ border: '1px solid green', padding: '10px', margin: '10px' }}>
+          <h4>Validated Child Component</h4>
+          <p>Validated message from parent: {message}</p>
+        </div>
+      );
+    };
+
+    const CounterWithUseState = () => {
+      const [count, setCount] = useState(0);
+
+      return (
+        <div style={{ border: '1px solid black', padding: '10px', margin: '10px' }}>
+          <h3>Counter with useState</h3>
+          <p>Count: {count}</p>
+          <button onClick={() => setCount(count + 1)}>Increase</button>
+          <button onClick={() => setCount(count - 1)}>Decrease</button>
+        </div>
+      );
+    };
+
+    const CounterWithUseReducer = () => {
+      const initialState = { count: 0 };
+      
+      const reducer = (state, action) => {
+        switch (action.type) {
+          case 'increment':
+            return { count: state.count + 1 };
+          case 'decrement':
+            return { count: state.count - 1 };
+          default:
+            return state;
+        }
+      };
+
+      const [state, dispatch] = useReducer(reducer, initialState);
+
+      return (
+        <div style={{ border: '1px solid black', padding: '10px', margin: '10px' }}>
+          <h3>Counter with useReducer</h3>
+          <p>Count: {state.count}</p>
+          <button onClick={() => dispatch({ type: 'increment' })}>Increase</button>
+          <button onClick={() => dispatch({ type: 'decrement' })}>Decrease</button>
+        </div>
+      );
+    };
+
+    const JokeFetcher = () => {
+      const [joke, setJoke] = useState('');
+      const [loading, setLoading] = useState(true);
+
+      const fetchJoke = async () => {
+        setLoading(true);
+        try {
+          setTimeout(() => {
+            const jokes = [
+              "Why don't scientists trust atoms? Because they make up everything!",
+              "Why did the scarecrow win an award? Because he was outstanding in his field!",
+              "I told my wife she was drawing her eyebrows too high. She looked surprised.",
+              "Why don't programmers like nature? It has too many bugs!"
+            ];
+            const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
+            setJoke(randomJoke);
+            setLoading(false);
+          }, 1000);
+        } catch (error) {
+          setJoke('Failed to fetch joke');
+          setLoading(false);
+        }
+      };
+
+      useEffect(() => {
+        fetchJoke();
+      }, []);
+
+      return (
+        <div style={{ border: '1px solid black', padding: '10px', margin: '10px' }}>
+          <h3>Joke Fetcher with useEffect</h3>
+          {loading ? (
+            <p>Loading joke...</p>
+          ) : (
+            <>
+              <p>{joke}</p>
+              <button onClick={fetchJoke}>Refresh Joke</button>
+            </>
+          )}
+        </div>
+      );
+    };
+
+    const AutoFocusForm = () => {
+      const inputRef = useRef(null);
+
+      const handleClick = () => {
+        inputRef.current.focus();
+      };
+
+      return (
+        <div style={{ border: '1px solid black', padding: '10px', margin: '10px' }}>
+          <h3>Auto Focus Form with useRef</h3>
+          <input ref={inputRef} type="text" placeholder="Click button to focus" />
+          <button onClick={handleClick}>Focus Input</button>
+        </div>
+      );
+    };
+
+    const ThemeContext = createContext('light');
+
+    const ThemedApp = () => {
+      const [theme, setTheme] = useState('light');
+
+      return (
+        <ThemeContext.Provider value={theme}>
+          <div style={{ border: '1px solid black', padding: '10px', margin: '10px' }}>
+            <h3>Theme Context Demo</h3>
+            <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+              Toggle Theme
+            </button>
+            <ThemedComponent />
+          </div>
+        </ThemeContext.Provider>
+      );
+    };
+
+    const ThemedComponent = () => {
+      const theme = useContext(ThemeContext);
+      const style = {
+        backgroundColor: theme === 'light' ? '#fff' : '#333',
+        color: theme === 'light' ? '#000' : '#fff',
+        padding: '10px',
+        margin: '10px'
+      };
+
+      return (
+        <div style={style}>
+          <p>Current theme: {theme}</p>
+        </div>
+      );
+    };
+
+    const FormWithUseState = () => {
+      const [formData, setFormData] = useState({
+        name: '',
+        email: ''
+      });
+
+      const handleChange = (e) => {
+        setFormData({
+          ...formData,
+          [e.target.name]: e.target.value
+        });
+      };
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log('Form submitted:', formData);
+      };
+
+      return (
+        <div style={{ border: '1px solid black', padding: '10px', margin: '10px' }}>
+          <h3>Form with useState</h3>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label>
+                Name:
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                Email:
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+              </label>
+            </div>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      );
+    };
+
+    const FormWithUseRef = () => {
+      const nameRef = useRef();
+      const emailRef = useRef();
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        const formData = {
+          name: nameRef.current.value,
+          email: emailRef.current.value
+        };
+        console.log('Form submitted:', formData);
+      };
+
+      return (
+        <div style={{ border: '1px solid black', padding: '10px', margin: '10px' }}>
+          <h3>Form with useRef</h3>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label>
+                Name:
+                <input
+                  type="text"
+                  ref={nameRef}
+                />
+              </label>
+            </div>
+            <div>
+              <label>
+                Email:
+                <input
+                  type="email"
+                  ref={emailRef}
+                />
+              </label>
+            </div>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      );
+    };
+
+    function App() {
+      const [showLifecycleDemo, setShowLifecycleDemo] = useState(true);
+      const [activeSection, setActiveSection] = useState('components');
+
+      const toggleLifecycleDemo = () => {
+        setShowLifecycleDemo(!showLifecycleDemo);
+      };
+
+      const renderContent = () => {
+        switch (activeSection) {
+          case 'components':
+            return (
+              <div>
+                <h2>Exercise 1: React Components</h2>
+                <Content />
+              </div>
+            );
+          case 'styling':
+            return (
+              <div>
+                <h2>Exercises 2-4: Styling in React</h2>
+                <div>
+                  <h3>Inline CSS:</h3>
+                  <StyledButtonInline />
+                </div>
+                <div>
+                  <h3>Internal CSS:</h3>
+                  <StyledButtonInternal />
+                </div>
+                <div>
+                  <h3>External CSS:</h3>
+                  <StyledButtonExternal />
+                </div>
+              </div>
+            );
+          case 'lifecycle':
+            return (
+              <div>
+                <h2>Exercise 5: Component Lifecycle</h2>
+                <button onClick={toggleLifecycleDemo}>
+                  {showLifecycleDemo ? 'Unmount' : 'Mount'} Lifecycle Demo
+                </button>
+                {showLifecycleDemo && <LifecycleDemo />}
+              </div>
+            );
+          case 'props':
+            return (
+              <div>
+                <h2>Exercises 6-7: React Props</h2>
+                <Parent />
+                <div>
+                  <h3>Props Validation:</h3>
+                  <ValidatedChild message="This is a valid message" />
+                </div>
+              </div>
+            );
+          case 'hooks':
+            return (
+              <div>
+                <h2>Exercises 8-11: React Hooks</h2>
+                <CounterWithUseState />
+                <CounterWithUseReducer />
+                <JokeFetcher />
+                <AutoFocusForm />
+                <ThemedApp />
+              </div>
+            );
+          case 'forms':
+            return (
+              <div>
+                <h2>Exercise 12: Forms in React</h2>
+                <FormWithUseState />
+                <FormWithUseRef />
+              </div>
+            );
+          default:
+            return <div>Select a section</div>;
+        }
+      };
+
+      return (
+        <div className="app-container">
+          <Header title="React JSX Exercises" />
+          
+          <div className="navigation">
+            <button onClick={() => setActiveSection('components')}>Components</button>
+            <button onClick={() => setActiveSection('styling')}>Styling</button>
+            <button onClick={() => setActiveSection('lifecycle')}>Lifecycle</button>
+            <button onClick={() => setActiveSection('props')}>Props</button>
+            <button onClick={() => setActiveSection('hooks')}>Hooks</button>
+            <button onClick={() => setActiveSection('forms')}>Forms</button>
+          </div>
+          
+          <div className="content-section">
+            {renderContent()}
+          </div>
+          
+          <Footer />
+        </div>
+      );
+    }
+
+    // Render the App
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    );
+  </script>
 </body>
 </html>

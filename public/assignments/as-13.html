@@ -8,95 +8,9 @@
   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <style>
-    body {
-      background-color: #121212;
-      color: #f0f0f0;
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: auto;
-      padding: 40px 20px;
-    }
-
-    h1 {
-      text-align: center;
-      color: #00bcd4;
-      margin-bottom: 30px;
-    }
-
-    .link-box {
-      background-color: #1f1f1f;
-      padding: 20px;
-      margin: 15px 0;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-      transition: background-color 0.3s ease;
-    }
-
-    .link-box:hover {
-      background-color: #333;
-    }
-
-    .link-box a {
-      color: #90caf9;
-      text-decoration: none;
-      font-size: 1.2rem;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 40px;
-      color: #888;
-    }
-
-    /* Add some styling for the React components */
-    .App {
-      padding: 20px;
-    }
-
-    section {
-      background: #1f1f1f;
-      margin: 20px 0;
-      padding: 20px;
-      border-radius: 8px;
-    }
-
-    button {
-      background: #00bcd4;
-      color: white;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 4px;
-      cursor: pointer;
-      margin: 5px;
-    }
-
-    input {
-      padding: 8px;
-      margin: 5px;
-      border-radius: 4px;
-      border: 1px solid #333;
-      background: #2f2f2f;
-      color: white;
-    }
-
-    label {
-      margin-right: 10px;
-    }
-  </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Exercise 13 Web Programming</h1>
-    <div id="root"></div>
-  </div>
-
-  <footer>Created by Mishti Mattu | 23BCE1067</footer>
+  <div id="root"></div>
   
   <!-- React Components -->
   <script type="text/babel">
@@ -311,58 +225,59 @@
     // Main App component that combines all the exercises
     function App() {
       return (
-        <div className="App">
-          <section>
+        <div>
+          <h1>Exercise 13 - React Components</h1>
+          <div>
             <h2>1. Hello React Components</h2>
             <HelloWithoutJSX />
             <HelloWithJSX />
             <HelloWithVariable />
-          </section>
+          </div>
           
-          <section>
+          <div>
             <h2>2. Dynamic Fruits List</h2>
             <FruitsList />
-          </section>
+          </div>
           
-          <section>
+          <div>
             <h2>3. Styled Message</h2>
             <StyledMessage />
-          </section>
+          </div>
           
-          <section>
+          <div>
             <h2>4. Sum of Squares</h2>
             <SumOfSquares />
-          </section>
+          </div>
           
-          <section>
+          <div>
             <h2>5. Conditional Greeting</h2>
             <Greeting />
-          </section>
+          </div>
           
-          <section>
+          <div>
             <h2>6. Current Day</h2>
             <CurrentDay />
-          </section>
+          </div>
           
-          <section>
+          <div>
             <h2>7. Prime Number Checker</h2>
             <PrimeChecker />
-          </section>
+          </div>
           
-          <section>
+          <div>
             <h2>8. Temperature Converter</h2>
             <TemperatureConverter />
-          </section>
+          </div>
           
-          <section>
+          <div>
             <h2>9. String Reverser</h2>
             <StringReverser />
-          </section>
+          </div>
           
-          <section>
+          <div>
             <h2>10. Random Number Generator</h2>
             <RandomNumberGenerator />
-          </section>
+          </div>
         </div>
       );
     }
