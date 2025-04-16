@@ -1,70 +1,144 @@
-# Getting Started with Create React App
+# Web Programming Assignments
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository contains a collection of web programming assignments focusing on HTML, CSS, JavaScript, and React. Each assignment demonstrates different concepts and techniques in web development.
 
-## Available Scripts
+## Directory Structure
 
-In the project directory, you can run:
+```
+webprogramming/
+├── public/
+│   ├── images/
+│   │   ├── profileimage.png
+│   │   ├── sign.png
+│   │   ├── myphoto.png
+│   │   └── space.png
+│   ├── assignments/
+│   │   ├── as-1.html to as-15.html
+│   │   ├── as-14-1.jsx, as-15-1.jsx
+│   │   ├── index1.jsx, index2.jsx
+│   │   └── styles.css
+│   ├── logo192.png
+│   ├── logo512.png
+│   └── index.html
+├── src/
+├── node_modules/
+├── package.json
+└── package-lock.json
+```
 
-### `npm start`
+## Assignments Overview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Assignment 1-3: HTML Basics
+- **as-1.html**: Introduction to HTML structure and basic elements
+- **as-2.html**: HTML forms and input elements
+- **as-3.html**: HTML5 semantic elements and layouts
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Assignment 4-7: CSS and Styling
+- **as-4.html**: CSS selectors and properties
+- **as-5.html**: CSS layouts and positioning
+- **as-6.html**: CSS flexbox and grid
+- **as-7.html**: CSS animations and transitions
 
-### `npm test`
+### Assignment 8-9: JavaScript
+- **as-8.html**: JavaScript basics and DOM manipulation
+- **as-9.html**: JavaScript events and form validation
+- Supporting files: `as-8-1.js` to `as-8-6.js`, `as-9-1.js` to `as-9-3.js`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Assignment 10-11: Advanced JavaScript
+- **as-10.html**: JavaScript objects and arrays
+- **as-11.html**: JavaScript async programming and fetch API
 
-### `npm run build`
+### Assignment 12: HTML5 APIs
+- **as-12.html**: Working with HTML5 APIs
+- **as-12-1.html**: Local Storage
+- **as-12-2.html**: Session Storage
+- **as-12-3.html**: Geolocation
+- **as-12-4.html**: Canvas
+- **as-12-5.html**: Web Workers
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Assignment 13-15: React
+- **as-13.html & as-13-1.jsx**: Introduction to React components
+- **as-14.html & as-14-1.jsx**: React state and props
+  - Image display component
+  - Login form with validation
+  - User profile page
+- **as-15.html & as-15-1.jsx**: Advanced React concepts
+  - React hooks (useState, useEffect, useReducer, useRef)
+  - Context API
+  - Form handling
+  - Component lifecycle
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Key Features
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### React Components
+1. **Image Display**
+   - Demonstrates image handling in React
+   - Shows images from different directories
+   - Responsive image display
 
-### `npm run eject`
+2. **Login Form**
+   - Form validation
+   - Multiple input types (text, password, select)
+   - Radio buttons and checkboxes
+   - Reset functionality
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3. **User Profile**
+   - Profile image display
+   - User information section
+   - Blog posts list
+   - Responsive layout
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Styling
+- Responsive design
+- CSS Flexbox layouts
+- Custom styling for forms and buttons
+- Hover effects and transitions
+- Mobile-friendly components
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Setup Instructions
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd webprogramming
+   ```
 
-## Learn More
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. Start the development server:
+   ```bash
+   npm start
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. For standalone HTML files:
+   - Navigate to the `public/assignments` directory
+   - Open the desired HTML file in a web browser
 
-### Code Splitting
+## Dependencies
+- React 18
+- React DOM
+- Babel (for JSX transformation)
+- Additional CSS libraries (included in styles.css)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Browser Compatibility
+- Chrome (recommended)
+- Firefox
+- Safari
+- Edge
 
-### Analyzing the Bundle Size
+## Notes
+- Images are stored in the `public/images` directory
+- React components use relative paths for assets
+- CSS styles are modular and reusable
+- Each assignment builds upon concepts from previous ones
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## Author
+Mishti Mattu
+23BCE1067
+VIT University
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+This project is for educational purposes. All rights reserved. 

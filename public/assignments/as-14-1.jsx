@@ -7,7 +7,7 @@ function ImageDisplay() {
       <div>
         <h3>a) Image from public/images folder</h3>
         <img 
-          src="logo192.png" 
+          src="../logo192.png" 
           alt="Sample from public folder" 
           width="300" 
         />
@@ -15,7 +15,7 @@ function ImageDisplay() {
       <div>
         <h3>b) Image from src/images folder</h3>
         <img 
-          src="profileimage.png" 
+          src="../images/profileimage.png" 
           alt="Sample from src folder" 
           width="300" 
         />
@@ -231,7 +231,7 @@ function ProfileImage() {
   return (
     <div className="profile-image">
       <img 
-        src="/images/profileimage.png" 
+        src="../images/profileimage.png" 
         alt="User Profile" 
         className="avatar" 
       />
