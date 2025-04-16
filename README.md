@@ -2,6 +2,9 @@
 
 This repository contains a collection of web programming assignments focusing on HTML, CSS, JavaScript, and React. Each assignment demonstrates different concepts and techniques in web development.
 
+## Live Demo
+🚀 Check out the live deployment: [Web Programming Assignments](https://web-programming-assignments-submission.vercel.app/)
+
 ## Directory Structure
 
 ```
@@ -129,6 +132,9 @@ webprogramming/
 - Safari
 - Edge
 
+## Deployment
+The project is deployed using Vercel and can be accessed at [https://web-programming-assignments-submission.vercel.app/](https://web-programming-assignments-submission.vercel.app/)
+
 ## Notes
 - Images are stored in the `public/images` directory
 - React components use relative paths for assets
@@ -136,8 +142,8 @@ webprogramming/
 - Each assignment builds upon concepts from previous ones
 
 ## Author
-Mishti Mattu
-23BCE1067
+Mishti Mattu  
+23BCE1067  
 VIT University
 
 ## License
