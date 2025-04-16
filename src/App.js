@@ -10,35 +10,35 @@ function App() {
     {
       id: 1,
       title: "HTML-Intro",
-      description: "Creating a basic webpage structure with semantic HTML5 elements",
+      description: "Introduction to HTML with basic page structure and text formatting",
       link: "/assignments/as-1.html",
       type: "HTML"
     },
     {
       id: 2,
       title: "HTML-Table-Lists",
-      description: "Building interactive forms with various input types and validation",
+      description: "Working with HTML tables and different types of lists",
       link: "/assignments/as-2.html",
       type: "HTML"
     },
     {
       id: 3,
       title: "HTML-Image-Mapping",
-      description: "Creating structured data tables with proper semantic markup",
+      description: "Implementing image maps and interactive image regions",
       link: "/assignments/as-3.html",
       type: "HTML"
     },
     {
       id: 4,
       title: "HTML-Forms",
-      description: "Implementing images, audio, and video elements with proper attributes",
+      description: "Creating HTML forms with various input types and validation",
       link: "/assignments/as-4.html",
       type: "HTML"
     },
     {
       id: 5,
       title: "HTML-Frames-Media-Elements",
-      description: "Building accessible web content following WCAG guidelines",
+      description: "Working with frames and embedding media elements",
       link: "/assignments/as-5.html",
       type: "HTML"
     },
@@ -46,14 +46,14 @@ function App() {
     {
       id: 6,
       title: "CSS",
-      description: "Styling web pages with CSS selectors, properties, and values",
+      description: "Introduction to CSS styling and selectors",
       link: "/assignments/as-6.html",
       type: "CSS"
     },
     {
       id: 7,
       title: "CSS2",
-      description: "Creating responsive layouts using Flexbox and Grid",
+      description: "Advanced CSS layouts and responsive design",
       link: "/assignments/as-7.html",
       type: "CSS"
     },
@@ -61,35 +61,35 @@ function App() {
     {
       id: 8,
       title: "Javascript",
-      description: "Introduction to JavaScript syntax and basic programming concepts",
+      description: "Basic JavaScript concepts and DOM manipulation",
       link: "/assignments/as-8.html",
       type: "JavaScript"
     },
     {
       id: 9,
       title: "JavaScript",
-      description: "Working with the Document Object Model and event handling",
+      description: "Working with JavaScript events and form validation",
       link: "/assignments/as-9.html",
       type: "JavaScript"
     },
     {
       id: 10,
       title: "JavaScript-Functions-Forms",
-      description: "Creating and using functions, callbacks, and closures",
+      description: "JavaScript functions and advanced form handling",
       link: "/assignments/as-10.html",
       type: "JavaScript"
     },
     {
       id: 11,
       title: "JavaScript-Dynamic-Elements-Events",
-      description: "Working with arrays and array methods for data manipulation",
+      description: "Creating dynamic content and handling complex events",
       link: "/assignments/as-11.html",
       type: "JavaScript"
     },
     {
       id: 12,
       title: "JavaScript-Canvas-Plotly-Z-Index",
-      description: "Understanding objects, prototypes, and object-oriented programming",
+      description: "Working with Canvas, Plotly charts, and z-index positioning",
       link: "/assignments/as-12.html",
       type: "JavaScript"
     },
@@ -97,21 +97,21 @@ function App() {
     {
       id: 13,
       title: "JSX-Intro",
-      description: "Building reusable React components and understanding props",
+      description: "Introduction to JSX and React components",
       link: "/assignments/as-13.html",
       type: "React"
     },
     {
       id: 14,
       title: "JSX-Part2",
-      description: "Using React hooks for state management and side effects",
+      description: "Building interactive React components with state",
       link: "/assignments/as-14.html",
       type: "React"
     },
     {
       id: 15,
       title: "JSX-Part3",
-      description: "Implementing client-side routing in React applications",
+      description: "Advanced React components with styling and user interaction",
       link: "/assignments/as-15.html",
       type: "React"
     }
