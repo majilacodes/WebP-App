@@ -2,43 +2,38 @@ import React, { useState } from 'react';
 import './App.css';
 
 function App() {
-  const [hoveredCard, setHoveredCard] = useState(null);
+  const [activeFilter, setActiveFilter] = useState('all');
   
-  // Assignment data with titles, descriptions, and links
+  // Assignment data with titles and links (descriptions removed)
   const assignments = [
     // HTML Assignments (1-5)
     {
       id: 1,
-      title: "HTML-Intro",
-      description: "Introduction to HTML with basic page structure and text formatting",
+      title: "HTML: Intro",
       link: "/assignments/as-1.html",
       type: "HTML"
     },
     {
       id: 2,
-      title: "HTML-Table-Lists",
-      description: "Working with HTML tables and different types of lists",
+      title: "HTML: Table & Lists",
       link: "/assignments/as-2.html",
       type: "HTML"
     },
     {
       id: 3,
-      title: "HTML-Image-Mapping",
-      description: "Implementing image maps and interactive image regions",
+      title: "HTML: Image Mapping",
       link: "/assignments/as-3.html",
       type: "HTML"
     },
     {
       id: 4,
-      title: "HTML-Forms",
-      description: "Creating HTML forms with various input types and validation",
+      title: "HTML: Forms",
       link: "/assignments/as-4.html",
       type: "HTML"
     },
     {
       id: 5,
-      title: "HTML-Frames-Media-Elements",
-      description: "Working with frames and embedding media elements",
+      title: "HTML: Frames-Media-Elements",
       link: "/assignments/as-5.html",
       type: "HTML"
     },
@@ -46,14 +41,12 @@ function App() {
     {
       id: 6,
       title: "CSS",
-      description: "Introduction to CSS styling and selectors",
       link: "/assignments/as-6.html",
       type: "CSS"
     },
     {
       id: 7,
-      title: "CSS2",
-      description: "Advanced CSS layouts and responsive design",
+      title: "CSS: Part 2",
       link: "/assignments/as-7.html",
       type: "CSS"
     },
@@ -61,100 +54,122 @@ function App() {
     {
       id: 8,
       title: "Javascript",
-      description: "Basic JavaScript concepts and DOM manipulation",
       link: "/assignments/as-8.html",
       type: "JavaScript"
     },
     {
       id: 9,
       title: "JavaScript",
-      description: "Working with JavaScript events and form validation",
       link: "/assignments/as-9.html",
       type: "JavaScript"
     },
     {
       id: 10,
-      title: "JavaScript-Functions-Forms",
-      description: "JavaScript functions and advanced form handling",
+      title: "JavaScript: Functions-Forms",
       link: "/assignments/as-10.html",
       type: "JavaScript"
     },
     {
       id: 11,
-      title: "JavaScript-Dynamic-Elements-Events",
-      description: "Creating dynamic content and handling complex events",
+      title: "JavaScript: Dynamic-Elements-Events",
       link: "/assignments/as-11.html",
       type: "JavaScript"
     },
     {
       id: 12,
-      title: "JavaScript-Canvas-Plotly-Z-Index",
-      description: "Working with Canvas, Plotly charts, and z-index positioning",
+      title: "JavaScript: Canvas-Plotly-Z-Index",
       link: "/assignments/as-12.html",
       type: "JavaScript"
     },
     // JSX/React Assignments (13-15)
     {
       id: 13,
-      title: "JSX-Intro",
-      description: "Introduction to JSX and React components",
+      title: "JSX: Intro",
       link: "/assignments/as-13.html",
       type: "React"
     },
     {
       id: 14,
-      title: "JSX-Part2",
-      description: "Building interactive React components with state",
+      title: "JSX: Part 2",
       link: "/assignments/as-14.html",
       type: "React"
     },
     {
       id: 15,
-      title: "JSX-Part3",
-      description: "Advanced React components with styling and user interaction",
+      title: "JSX: Part 3",
       link: "/assignments/as-15.html",
       type: "React"
     }
   ];
 
-  // Function to handle card click (navigation)
-  const handleCardClick = (link) => {
+  // Function to handle navigation
+  const handleAssignmentClick = (link) => {
     window.location.href = link;
   };
+
+  // Filter assignments based on active filter
+  const filteredAssignments = activeFilter === 'all' 
+    ? assignments 
+    : assignments.filter(assignment => assignment.type === activeFilter);
 
   return (
     <div className="app-container">
       <header className="header">
-        <h1>Web Programming Portfolio</h1>
-        <p className="subtitle">A collection of 15 web programming assignments</p>
+        <h1>Web Programming Assignments</h1>
+        <p className="subtitle">A compilation of 15 web programming assignments</p>
       </header>
 
-      <main className="assignments-grid">
-        {assignments.map((assignment, index) => (
+      <div className="filters">
+        <button 
+          className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`}
+          onClick={() => setActiveFilter('all')}
+        >
+          All
+        </button>
+        <button 
+          className={`filter-btn ${activeFilter === 'HTML' ? 'active' : ''}`}
+          onClick={() => setActiveFilter('HTML')}
+        >
+          HTML
+        </button>
+        <button 
+          className={`filter-btn ${activeFilter === 'CSS' ? 'active' : ''}`}
+          onClick={() => setActiveFilter('CSS')}
+        >
+          CSS
+        </button>
+        <button 
+          className={`filter-btn ${activeFilter === 'JavaScript' ? 'active' : ''}`}
+          onClick={() => setActiveFilter('JavaScript')}
+        >
+          JavaScript
+        </button>
+        <button 
+          className={`filter-btn ${activeFilter === 'React' ? 'active' : ''}`}
+          onClick={() => setActiveFilter('React')}
+        >
+          React
+        </button>
+      </div>
+
+      <main className="assignments-list">
+        {filteredAssignments.map((assignment) => (
           <div 
             key={assignment.id}
-            className={`assignment-card ${assignment.type.toLowerCase()}`}
-            style={{ '--animation-order': index + 1 }}
-            onMouseEnter={() => setHoveredCard(assignment.id)}
-            onMouseLeave={() => setHoveredCard(null)}
-            onClick={() => handleCardClick(assignment.link)}
+            className="assignment-item"
+            onClick={() => handleAssignmentClick(assignment.link)}
           >
-            <div className="card-content">
-              <span className="assignment-type">{assignment.type}</span>
-              <h2 className="assignment-title">{assignment.title}</h2>
-              <p className="assignment-description">{assignment.description}</p>
-              <div className={`view-btn ${hoveredCard === assignment.id ? 'visible' : ''}`}>
-                View Assignment
+            <div className="assignment-number">{assignment.id}</div>
+            <div className="assignment-content">
+              <div className="assignment-header">
+                <h2 className="assignment-title">{assignment.title}</h2>
+                <span className="assignment-type">{assignment.type}</span>
               </div>
             </div>
-            <div className="card-number">{assignment.id}</div>
           </div>
         ))}
       </main>
 
-      <footer className="footer">
-        <p>Web Programming - Assignment Portfolio © 2025</p>
-      </footer>
     </div>
   );
 }

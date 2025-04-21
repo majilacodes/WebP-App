@@ -1,126 +1,166 @@
-<!DOCTYPE html> 
-<html> 
-<head> 
-    <title>23BCE1067</title> 
-    <style> 
-        body { 
-            font-family: Arial, sans-serif; 
-            background-color: #dde0c9; 
-            text-align: center; 
-        } 
-        .container { 
-            width: 40%; 
-            margin: auto; 
-            background: #798061; 
-            padding: 15px; 
-            border-radius: 10px; 
-            color: white; 
-            text-align: left; 
-        } 
-        .form-group { 
-            display: flex; 
-            justify-content: space-between; 
-            margin: 10px 0; 
-        } 
-        .form-group label { 
-            width: 40%; 
-            text-align: right; 
-            padding-right: 10px; 
-        } 
-        .form-group input { 
-            width: 55%; 
-            padding: 5px; 
-            border-radius: 5px; 
-        } 
-        .product { 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            margin: 8px 0; 
-        } 
-        .submit-btn { 
-            background: #c29c68; 
-            color: white; 
-            padding: 8px; 
-            border: none; 
-            border-radius: 5px; 
-            cursor: pointer; 
-            display: block; 
-            width: 100%; 
-            margin-top: 15px; 
-        } 
-    </style> 
-</head> 
-<body> 
-    <div class="container"> 
-        <h2 style="text-align: center;">Grocery Order Form</h2> 
-        <form id="orderForm"> 
-            <div class="form-group"> 
-                <label>Customer Name:</label> 
-                <input type="text" id="name"> 
-            </div> 
-            <div class="form-group"> 
-                <label>Phone Number:</label> 
-                <input type="text" id="phone"> 
-            </div> 
-            <div class="form-group"> 
-                <label>Email:</label> 
-                <input type="text" id="email"> 
-            </div> 
- 
-            <h3 style="text-align: center;">Products</h3> 
-            <div class="product"> 
-                <input type="checkbox" id="apple" value="Apple" data-price="10"> 
-                <label>Apple - $10/kg</label> 
-                <input type="number" id="appleQty" min="1" max="10" disabled> 
-            </div> 
-            <div class="product"> 
-                <input type="checkbox" id="banana" value="Banana" data-price="5"> 
-                <label>Banana - $5/kg</label> 
-                <input type="number" id="bananaQty" min="1" max="10" disabled> 
-            </div> 
-            <div class="product"> 
-                <input type="checkbox" id="avocado" value="Avocado" data
-price="7"> 
-                <label>Avocado - $7/kg</label> 
-                <input type="number" id="avocadoQty" min="1" max="10" disabled> 
-            </div> 
- 
-            <button type="button" class="submit-btn" 
-onclick="submitOrder()">SUBMIT</button> 
-        </form> 
-    </div> 
- 
-    <script> 
-        function submitOrder() { 
-            let name = document.getElementById("name").value; 
-            let phone = document.getElementById("phone").value; 
-            let email = document.getElementById("email").value; 
- 
-            let order = []; 
-            
-document.querySelectorAll('input[type="checkbox"]:checked').forEach(item => { 
-                let product = item.value; 
-                let quantity = document.getElementById(item.id + "Qty").value; 
-                let price = item.getAttribute("data-price"); 
-                order.push({ product, quantity, price }); 
-            }); 
- 
-            let orderData = { name, phone, email, order }; 
-            localStorage.setItem("orderDetails", JSON.stringify(orderData)); 
-            window.location.href = "as-10-3-1.html"; 
-        } 
- 
-        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => { 
-            checkbox.addEventListener("change", function() { 
-                let quantityInput = document.getElementById(this.id + "Qty"); 
-                quantityInput.disabled = !this.checked; 
-                if (!this.checked) quantityInput.value = ""; 
-            }); 
-        }); 
-    </script> 
-</body> 
-</html> 
- 
- 
- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>23BCE1091 - Grocery Order Form</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #d3dbc5;
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #6e7f55;
+      padding: 25px;
+      border-radius: 12px;
+      width: 320px;
+      color: white;
+      text-align: center;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 90%;
+      padding: 6px;
+      margin: 8px 0;
+      border-radius: 15px;
+      border: none;
+      font-size: 14px;
+    }
+
+    .products {
+      text-align: left;
+      margin-top: 20px;
+    }
+
+    .products h3 {
+      margin-bottom: 10px;
+    }
+
+    .product-item {
+      display: flex;
+      align-items: center;
+      margin: 8px 0;
+    }
+
+    .product-item img {
+      width: 32px;
+      height: 32px;
+      margin-right: 10px;
+      background-color: white;
+      border-radius: 50%;
+    }
+
+    .product-item label {
+      flex: 1;
+    }
+
+    .product-item input[type="number"] {
+      width: 50px;
+      margin-left: 5px;
+    }
+
+    .submit-btn {
+      background-color: #a67c52;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      width: 100%;
+      margin-top: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: #8d6844;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Grocery Order Form</h2>
+
+    <label for="fname">First Name</label>
+    <input type="text" id="fname" placeholder="Enter First Name">
+
+    <label for="lname">Last Name</label>
+    <input type="text" id="lname" placeholder="Enter Last Name">
+
+    <label for="ph">Phone Number</label>
+    <input type="text" id="ph" placeholder="Enter Phone Number">
+
+    <label for="mail">Email</label>
+    <input type="text" id="mail" placeholder="Enter Email">
+
+    <div class="products">
+      <h3>Products</h3>
+
+      <div class="product-item">
+        <input type="checkbox" id="apple-yes">
+        <img src="apples.jpg" alt="Apple">
+        <label for="apple-yes">Apple $10/kg</label>
+        <input type="number" id="app" min="0" placeholder="Qty">
+      </div>
+
+      <div class="product-item">
+        <input type="checkbox" id="banana-yes">
+        <img src="bananas.jpg" alt="Banana">
+        <label for="banana-yes">Banana $5/kg</label>
+        <input type="number" id="ban" min="0" placeholder="Qty">
+      </div>
+
+      <div class="product-item">
+        <input type="checkbox" id="avo-yes">
+        <img src="avacado.jpg" alt="Avocado">
+        <label for="avo-yes">Avocado $7/kg</label>
+        <input type="number" id="avo" min="0" placeholder="Qty">
+      </div>
+    </div>
+
+    <button class="submit-btn" onclick="sendIt()">SUBMIT</button>
+  </div>
+
+  <script>
+    function sendIt() {
+      const fn = document.getElementById('fname').value;
+      const ln = document.getElementById('lname').value;
+      const mob = document.getElementById('ph').value;
+      const em = document.getElementById('mail').value;
+
+      const appAmt = document.getElementById('apple-yes').checked
+        ? parseInt(document.getElementById('app').value || 0)
+        : 0;
+      const banAmt = document.getElementById('banana-yes').checked
+        ? parseInt(document.getElementById('ban').value || 0)
+        : 0;
+      const avoAmt = document.getElementById('avo-yes').checked
+        ? parseInt(document.getElementById('avo').value || 0)
+        : 0;
+
+      const orderDetails = {
+        firstName: fn,
+        lastName: ln,
+        phone: mob,
+        email: em,
+        appleQty: appAmt,
+        bananaQty: banAmt,
+        avocadoQty: avoAmt
+      };
+
+      localStorage.setItem('order', JSON.stringify(orderDetails));
+      window.location.href = 'as-10-3-1.html';
+    }
+  </script>
+
+</body>
+</html>

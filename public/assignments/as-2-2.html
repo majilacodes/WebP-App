@@ -1,123 +1,144 @@
-<!DOCTYPE html> 
-<html lang="en"> 
-<head> 
-    <meta charset="UTF-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>23BCE1067 Expenses Table</title> 
-    <style> 
-        .expenses-detailed-table { 
-            border-collapse: collapse; 
-            width: auto; 
-            border: 2px solid purple; 
-        } 
-         
-        .expenses-detailed-table th,  
-        .expenses-detailed-table td { 
-            border: 1px solid purple; 
-            padding: 8px; 
-            text-align: center; 
-        } 
-         
-        .expenses-detailed-table th { 
-            background-color: #f0f0f0; 
-        } 
-        tr.quarter-1 { 
-            background-color: #ff0000; 
-            color: rgb(0, 0, 0); 
-        } 
-         
-        tr.quarter-2 { 
-            background-color: #ff69b4; 
-            color: rgb(0, 0, 0); 
-        } 
-         
-        tr.quarter-3 { 
-            background-color: #4169e1; 
-            color: white; 
-        } 
-         
-        tr.quarter-4 { 
-            background-color: #008000; 
-            color: rgb(0, 0, 0); 
-        } 
-    </style> 
-</head> 
-<body> 
-    <table class="expenses-detailed-table"> 
-        <tr class="header-row"> 
-            <th rowspan="2">Year</th> 
-            <th rowspan="2">Quarter</th> 
-            <th colspan="2">Expenses</th> 
-            <th colspan="2">Income</th> 
-        </tr> 
-        <tr class="header-row"> 
-            <th>Quetta</th> 
-            <th>Dubai</th> 
-            <th>Quetta</th> 
-            <th>Dubai</th> 
-        </tr> 
-        <tr class="quarter-1"> 
-            <td style="background-color: #f0f0f0; color: black"; rowspan="4">2021</td> 
-            <td>1</td> 
-            <td>1,900</td> 
-            <td>8,650</td> 
-            <td>9,000</td> 
-            <td>7,780</td> 
-        </tr> 
-        <tr class="quarter-2"> 
-            <td>2</td> 
-            <td>2,230</td> 
-            <td>8,650</td> 
-            <td>8,500</td> 
-            <td>8,670</td> 
-        </tr> 
-        <tr class="quarter-3"> 
-            <td>3</td> 
-            <td>4,000</td> 
-            <td>8,650</td> 
-            <td>9,900</td> 
-            <td>9,870</td> 
-        </tr> 
-        <tr class="quarter-4"> 
-            <td>4</td> 
-            <td>3,280</td> 
-            <td>8,650</td> 
-            <td>9,880</td> 
-            <td>9,900</td> 
-        </tr> 
-        <tr class="quarter-1"> 
-            <td style="background-color: #f0f0f0; color: black"; rowspan="4">2022</td> 
-            <td>1</td> 
-            <td>7,780</td> 
-            <td>8,650</td> 
-            <td>7,780</td> 
-            <td>9,000</td> 
-        </tr> 
-        <tr class="quarter-2"> 
-            <td>2</td> 
-            <td>8,670</td> 
-            <td>8,650</td> 
-            <td>8,670</td> 
-            <td>8,500</td> 
-        </tr> 
-        <tr class="quarter-3"> 
-            <td>3</td> 
-            <td>9,870</td> 
-            <td>8,650</td> 
-            <td>9,870</td> 
-            <td>9,900</td> 
-        </tr> 
-        <tr class="quarter-4"> 
-            <td>4</td> 
-            <td>9,900</td> 
-            <td>8,650</td> 
-            <td>9,900</td> 
-            <td>9,800</td> 
-        </tr> 
-        <tr class="year-2013"> 
-            <td>2013</td> 
-            <td colspan="5">****</td> 
-        </tr> 
-    </table> 
-</body> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>23BCE1091 Expenses Table</title>
+  <style>
+    .expenses-detailed-table {
+      border-collapse: collapse;
+      width: auto;
+      border: 2px solid purple;
+      margin: 20px auto;
+    }
+
+    .expenses-detailed-table th,
+    .expenses-detailed-table td {
+      border: 1px solid purple;
+      padding: 8px 12px;
+      text-align: center;
+    }
+
+    .expenses-detailed-table th {
+      background-color: #f0f0f0;
+    }
+
+    tr.quarter-1 {
+      background-color: #ffcc00;
+      color: black;
+    }
+
+    tr.quarter-2 {
+      background-color: #ffcc99;
+      color: black;
+    }
+
+    tr.quarter-3 {
+      background-color: #99ccff;
+      color: white;
+    }
+
+    tr.quarter-4 {
+      background-color: #66cc66;
+      color: black;
+    }
+
+    tr.year-2013 {
+      background-color: #e0e0e0;
+      font-weight: bold;
+    }
+
+    td.year-cell {
+      background-color: #f0f0f0;
+      color: black;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <table class="expenses-detailed-table">
+    <tr class="header-row">
+      <th rowspan="2">Year</th>
+      <th rowspan="2">Quarter</th>
+      <th colspan="2">Expenses</th>
+      <th colspan="2">Income</th>
+    </tr>
+    <tr class="header-row">
+      <th>Quetta</th>
+      <th>Dubai</th>
+      <th>Quetta</th>
+      <th>Dubai</th>
+    </tr>
+
+    <!-- 2021 -->
+    <tr class="quarter-1">
+      <td class="year-cell" rowspan="4">2021</td>
+      <td>1</td>
+      <td>2,500</td>
+      <td>5,300</td>
+      <td>6,000</td>
+      <td>4,500</td>
+    </tr>
+    <tr class="quarter-2">
+      <td>2</td>
+      <td>3,000</td>
+      <td>5,300</td>
+      <td>5,000</td>
+      <td>5,500</td>
+    </tr>
+    <tr class="quarter-3">
+      <td>3</td>
+      <td>4,500</td>
+      <td>5,300</td>
+      <td>7,000</td>
+      <td>6,500</td>
+    </tr>
+    <tr class="quarter-4">
+      <td>4</td>
+      <td>3,800</td>
+      <td>5,300</td>
+      <td>7,500</td>
+      <td>7,000</td>
+    </tr>
+
+    <!-- 2022 -->
+    <tr class="quarter-1">
+      <td class="year-cell" rowspan="4">2022</td>
+      <td>1</td>
+      <td>6,000</td>
+      <td>5,300</td>
+      <td>6,000</td>
+      <td>7,000</td>
+    </tr>
+    <tr class="quarter-2">
+      <td>2</td>
+      <td>7,500</td>
+      <td>5,300</td>
+      <td>7,000</td>
+      <td>6,000</td>
+    </tr>
+    <tr class="quarter-3">
+      <td>3</td>
+      <td>8,000</td>
+      <td>5,300</td>
+      <td>8,000</td>
+      <td>7,500</td>
+    </tr>
+    <tr class="quarter-4">
+      <td>4</td>
+      <td>8,500</td>
+      <td>5,300</td>
+      <td>8,500</td>
+      <td>8,000</td>
+    </tr>
+
+    <!-- 2013 Placeholder -->
+    <tr class="year-2013">
+      <td>2013</td>
+      <td colspan="5">****</td>
+    </tr>
+  </table>
+
+</body>
 </html>

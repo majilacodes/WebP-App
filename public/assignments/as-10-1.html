@@ -1,67 +1,150 @@
-<!DOCTYPE html> 
-<html lang="en"> 
-<head> 
-    <meta charset="UTF-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>23BCE1067</title> 
-    <style> 
-        body { text-align: center; font-family: Arial, sans-serif; } 
-        table { margin: auto; border-collapse: collapse; width: 40%; } 
-        th, td { border: 1px solid black; padding: 8px; text-align: center; } 
-        th { background-color: #f2f2f2; } 
-        h2 { border-bottom: 2px solid black; padding-bottom: 5px; } 
-    </style> 
-</head> 
-<body> 
-    <h2>Hospital Patient Data</h2> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>23BCE1091 - Hospital Patient Data</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f9f9f9;
+      text-align: center;
+    }
 
-    <button onclick="s()">Sort by Age (Descending)</button> 
-    <input type="number" id="i1" placeholder="Enter Pid"> 
-    <button onclick="c()">Search Patient</button> 
-    <input type="number" id="i2" placeholder="Min Age"> 
-    <input type="number" id="i3" placeholder="Max Age"> 
-    <button onclick="f()">Filter by Age</button> 
+    table {
+      border: 2px solid black;
+      margin: 20px auto;
+      border-collapse: collapse;
+    }
 
-    <h3 id="o1"></h3> 
-    <table id="o2"></table> 
+    th, td {
+      border: 1px solid black;
+      padding: 10px 20px;
+    }
 
-    <script>
-        const p = [ 
-            { i: 1, n: "Alen", a: 39 }, 
-            { i: 2, n: "Deena", a: 47 }, 
-            { i: 3, n: "Diana", a: 21 }, 
-            { i: 4, n: "Jack", a: 54 }, 
-            { i: 5, n: "Jain", a: 23 }, 
-            { i: 6, n: "Kelvin", a: 61 }, 
-            { i: 7, n: "Louis", a: 69 }, 
-            { i: 8, n: "Rex", a: 49 } 
-        ]; 
+    #main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+      margin-bottom: 20px;
+    }
 
-        function s() { 
-            const x = [...p].sort((y, z) => z.a - y.a); 
-            d(x); 
-        } 
+    input {
+      padding: 5px;
+      margin: 5px 0;
+    }
 
-        function c() { 
-            const x = parseInt(document.getElementById("i1").value); 
-            const y = p.find(z => z.i === x); 
-            document.getElementById("o1").textContent = y ? `Found: ${y.n}, Age: ${y.a}` : "Not Found!"; 
-        } 
+    button {
+      padding: 6px 12px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
 
-        function f() { 
-            const x = parseInt(document.getElementById("i2").value); 
-            const y = parseInt(document.getElementById("i3").value); 
-            const z = p.filter(t => t.a >= x && t.a <= y); 
-            d(z); 
-        } 
+    button:hover {
+      background-color: #45a049;
+    }
 
-        function d(x) { 
-            const y = document.getElementById("o2"); 
-            y.innerHTML = "<tr><th>PID</th><th>NAME</th><th>AGE</th></tr>" +  
-                x.map(z => `<tr><td>${z.i}</td><td>${z.n}</td><td>${z.a}</td></tr>`).join(""); 
-        } 
+    #searchResult {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
 
-        window.onload = s;
-    </script>
-</body> 
+  <h1>Hospital Patient Data</h1>
+  <hr style="border: 2px solid black; width: 80%; margin: auto;" />
+
+  <div id="main">
+    <div>
+      <button onclick="sort()">Sort by Age (Descending)</button>
+    </div>
+    <div>
+      <input type="number" id="searchId" placeholder="Enter P-Id">
+      <button onclick="search()">Search Patient</button>
+      <p id="searchResult"></p>
+    </div>
+    <div>
+      <input type="number" id="minAge" placeholder="Min Age">
+      <input type="number" id="maxAge" placeholder="Max Age">
+      <button onclick="filter()">Filter by Age</button>
+    </div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>PID</th>
+        <th>Name</th>
+        <th>Age</th>
+      </tr>
+    </thead>
+    <tbody id="tbody">
+      <!-- Patient rows will be inserted here -->
+    </tbody>
+  </table>
+
+  <script>
+    const patients = [
+      { PId: 1, Name: "Alen", Age: 39 },
+      { PId: 2, Name: "Deena", Age: 47 },
+      { PId: 3, Name: "Diana", Age: 21 },
+      { PId: 4, Name: "Jack", Age: 54 },
+      { PId: 5, Name: "Jain", Age: 23 },
+      { PId: 6, Name: "Kelvin", Age: 61 },
+      { PId: 7, Name: "Louis", Age: 69 },
+      { PId: 8, Name: "Rex", Age: 49 }
+    ];
+
+    function display(data) {
+      const tbody = document.getElementById('tbody');
+      tbody.innerHTML = "";
+      data.forEach(p => {
+        tbody.innerHTML += `
+          <tr>
+            <td>${p.PId}</td>
+            <td>${p.Name}</td>
+            <td>${p.Age}</td>
+          </tr>
+        `;
+      });
+    }
+
+    function sort() {
+      const data = [...patients].sort((a, b) => b.Age - a.Age);
+      display(data);
+    }
+
+    function search() {
+      const id = parseInt(document.getElementById('searchId').value);
+      const patient = patients.find(p => p.PId === id);
+      const resultArea = document.getElementById("searchResult");
+
+      if (patient) {
+        resultArea.innerHTML = `Found: ${patient.Name}, Age: ${patient.Age}`;
+      } else {
+        resultArea.innerHTML = "Patient not found!";
+      }
+    }
+
+    function filter() {
+      const minAge = parseInt(document.getElementById("minAge").value);
+      const maxAge = parseInt(document.getElementById("maxAge").value);
+
+      if (!isNaN(minAge) && !isNaN(maxAge)) {
+        const data = patients.filter(p => p.Age >= minAge && p.Age <= maxAge);
+        display(data);
+      }
+    }
+
+    // Initial display
+    display(patients);
+  </script>
+
+</body>
 </html>

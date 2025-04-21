@@ -1,79 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>23BCE1091 - Receipt</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #d3dbc5;
+      text-align: center;
+    }
 
-<!DOCTYPE html> 
-<html> 
-<head> 
-    <title>23BCE1067</title> 
-    <style> 
-        body { 
-            font-family: Arial, sans-serif; 
-            background-color: #dde0c9; 
-            text-align: center; 
-        } 
-        .container { 
-            width: 40%; 
-            margin: auto; 
-            background: #798061; 
-            padding: 15px; 
-            border-radius: 10px; 
-            color: white; 
-            text-align: left; 
-        } 
-        .summary { 
-            text-align: left; 
-            margin: 15px; 
-        } 
-        .summary p { 
-            margin: 5px 0; 
-        } 
-        .btn-container { 
-            text-align: center; 
-            margin-top: 15px; 
-        } 
-        .btn { 
-            background: #c29c68; 
-            color: white; 
-            padding: 8px; 
-            border: none; 
-            border-radius: 5px; 
-            cursor: pointer; 
-            display: inline-block; 
-            margin-top: 10px; 
-        } 
-    </style> 
-</head> 
-<body> 
-    <div class="container"> 
-        <h2 style="text-align: center;">Order Receipt</h2> 
-        <div id="receipt"></div> 
-        <div class="btn-container"> 
-            <button class="btn" onclick="window.location.href='as-10-3.html'">Back to Order</button> 
-        </div> 
-    </div> 
- 
-    <script> 
-        let orderData = JSON.parse(localStorage.getItem("orderDetails")); 
-        if (orderData) { 
-            let receiptHTML = ` 
-                <h3>Customer Details</h3> 
-                <div class="summary"> 
-                    <p><strong>Name:</strong> ${orderData.name}</p> 
-                    <p><strong>Phone:</strong> ${orderData.phone}</p> 
-                    <p><strong>Email:</strong> ${orderData.email}</p> 
-                </div> 
-                <h3>Order Summary</h3> 
-                <ul class="summary">`; 
- 
-            let total = 0; 
-            orderData.order.forEach(item => { 
-                let itemTotal = item.quantity * item.price; 
-                total += itemTotal; 
-                receiptHTML += `<li>${item.product} - ${item.quantity}kg @ 
-$${item.price}/kg = $${itemTotal}</li>`; 
-            }); 
- 
-            receiptHTML += `</ul><h3>Total: $${total}</h3>`; 
-            document.getElementById("receipt").innerHTML = receiptHTML; 
-        } 
-    </script> 
-</body> 
+    .container {
+      background: #6e7f55;
+      color: white;
+      padding: 20px;
+      width: 320px;
+      margin: 50px auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 8px 16px;
+      background-color: #a67c52;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #8d6844;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Order Receipt</h2>
+    <p id="receipt"></p>
+    <button onclick="window.history.back()">Go Back</button>
+  </div>
+
+  <script>
+    let order = JSON.parse(localStorage.getItem("order"));
+    let cost = { a: 10, b: 5, av: 7 };
+
+    if (order) {
+      let appleCost = order.appleQty * cost.a;
+      let bananaCost = order.bananaQty * cost.b;
+      let avocadoCost = order.avocadoQty * cost.av;
+      let totalCost = appleCost + bananaCost + avocadoCost;
+
+      document.getElementById("receipt").innerHTML = `
+        <strong>First Name:</strong> ${order.firstName} <br>
+        <strong>Last Name:</strong> ${order.lastName} <br>
+        <strong>Phone:</strong> ${order.phone} <br>
+        <strong>Email:</strong> ${order.email} <br><br>
+        <strong>Order Details:</strong><br>
+        Apple: ${order.appleQty} kg - $${appleCost} <br>
+        Banana: ${order.bananaQty} kg - $${bananaCost} <br>
+        Avocado: ${order.avocadoQty} kg - $${avocadoCost} <br><br>
+        <strong>Total Price: $${totalCost}</strong>
+      `;
+    } else {
+      document.getElementById("receipt").innerHTML = "<strong>No order found!</strong>";
+    }
+  </script>
+
+</body>
 </html>

@@ -32,34 +32,20 @@
       margin: 0 auto; 
       padding: 20px; 
     } 
-     
-    .navigation { 
-      display: flex; 
-      gap: 10px; 
-      margin-bottom: 20px; 
-      flex-wrap: wrap; 
-    } 
-     
-    .navigation button { 
-      padding: 8px 16px; 
-      background-color: #4CAF50; 
-      color: white; 
-      border: none; 
-      border-radius: 4px; 
-      cursor: pointer; 
-      transition: background-color 0.3s; 
-    } 
-     
-    .navigation button:hover { 
-      background-color: #45a049; 
-    } 
-     
-    .content-section { 
-      border: 1px solid #ddd; 
-      padding: 20px; 
-      border-radius: 5px; 
-      margin-bottom: 20px; 
-    } 
+    
+    .section-container {
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    
+    .section-title {
+      background-color: #f1f1f1;
+      padding: 10px;
+      margin-top: 0;
+      border-radius: 5px;
+    }
      
     form { 
       max-width: 400px; 
@@ -142,6 +128,31 @@
       border-radius: 4px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
+    
+    .table-of-contents {
+      background-color: #f8f8f8;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    
+    .table-of-contents ul {
+      list-style-type: none;
+      padding-left: 10px;
+    }
+    
+    .table-of-contents li {
+      margin-bottom: 8px;
+    }
+    
+    .table-of-contents a {
+      text-decoration: none;
+      color: #0073aa;
+    }
+    
+    .table-of-contents a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -176,18 +187,10 @@
       };
 
       return (
-        <div style={{ padding: '20px', minHeight: '60vh' }}>
+        <div style={{ padding: '20px' }}>
           <p>{joke}</p>
           <button onClick={getRandomJoke}>Get Random Joke</button>
         </div>
-      );
-    };
-
-    const Footer = () => {
-      return (
-        <footer style={{ backgroundColor: '#f8f8f8', padding: '10px', textAlign: 'center' }}>
-          <p>© 2025 React Exercise App - All Rights Reserved</p>
-        </footer>
       );
     };
 
@@ -532,104 +535,88 @@
       );
     };
 
+    const TableOfContents = () => {
+      return (
+        <div className="table-of-contents">
+          <h3>Table of Contents</h3>
+          <ul>
+            <li><a href="#components">Exercise 1: React Components</a></li>
+            <li><a href="#styling">Exercises 2-4: Styling in React</a></li>
+            <li><a href="#lifecycle">Exercise 5: Component Lifecycle</a></li>
+            <li><a href="#props">Exercises 6-7: React Props</a></li>
+            <li><a href="#hooks">Exercises 8-11: React Hooks</a></li>
+            <li><a href="#forms">Exercise 12: Forms in React</a></li>
+          </ul>
+        </div>
+      );
+    };
+
     function App() {
       const [showLifecycleDemo, setShowLifecycleDemo] = useState(true);
-      const [activeSection, setActiveSection] = useState('components');
 
       const toggleLifecycleDemo = () => {
         setShowLifecycleDemo(!showLifecycleDemo);
-      };
-
-      const renderContent = () => {
-        switch (activeSection) {
-          case 'components':
-            return (
-              <div>
-                <h2>Exercise 1: React Components</h2>
-                <Content />
-              </div>
-            );
-          case 'styling':
-            return (
-              <div>
-                <h2>Exercises 2-4: Styling in React</h2>
-                <div>
-                  <h3>Inline CSS:</h3>
-                  <StyledButtonInline />
-                </div>
-                <div>
-                  <h3>Internal CSS:</h3>
-                  <StyledButtonInternal />
-                </div>
-                <div>
-                  <h3>External CSS:</h3>
-                  <StyledButtonExternal />
-                </div>
-              </div>
-            );
-          case 'lifecycle':
-            return (
-              <div>
-                <h2>Exercise 5: Component Lifecycle</h2>
-                <button onClick={toggleLifecycleDemo}>
-                  {showLifecycleDemo ? 'Unmount' : 'Mount'} Lifecycle Demo
-                </button>
-                {showLifecycleDemo && <LifecycleDemo />}
-              </div>
-            );
-          case 'props':
-            return (
-              <div>
-                <h2>Exercises 6-7: React Props</h2>
-                <Parent />
-                <div>
-                  <h3>Props Validation:</h3>
-                  <ValidatedChild message="This is a valid message" />
-                </div>
-              </div>
-            );
-          case 'hooks':
-            return (
-              <div>
-                <h2>Exercises 8-11: React Hooks</h2>
-                <CounterWithUseState />
-                <CounterWithUseReducer />
-                <JokeFetcher />
-                <AutoFocusForm />
-                <ThemedApp />
-              </div>
-            );
-          case 'forms':
-            return (
-              <div>
-                <h2>Exercise 12: Forms in React</h2>
-                <FormWithUseState />
-                <FormWithUseRef />
-              </div>
-            );
-          default:
-            return <div>Select a section</div>;
-        }
       };
 
       return (
         <div className="app-container">
           <Header title="React JSX Exercises" />
           
-          <div className="navigation">
-            <button onClick={() => setActiveSection('components')}>Components</button>
-            <button onClick={() => setActiveSection('styling')}>Styling</button>
-            <button onClick={() => setActiveSection('lifecycle')}>Lifecycle</button>
-            <button onClick={() => setActiveSection('props')}>Props</button>
-            <button onClick={() => setActiveSection('hooks')}>Hooks</button>
-            <button onClick={() => setActiveSection('forms')}>Forms</button>
+          <TableOfContents />
+          
+          <div id="components" className="section-container">
+            <h2 className="section-title">Exercise 1: React Components</h2>
+            <Content />
           </div>
           
-          <div className="content-section">
-            {renderContent()}
+          <div id="styling" className="section-container">
+            <h2 className="section-title">Exercises 2-4: Styling in React</h2>
+            <div>
+              <h3>Inline CSS:</h3>
+              <StyledButtonInline />
+            </div>
+            <div>
+              <h3>Internal CSS:</h3>
+              <StyledButtonInternal />
+            </div>
+            <div>
+              <h3>External CSS:</h3>
+              <StyledButtonExternal />
+            </div>
           </div>
           
-          <Footer />
+          <div id="lifecycle" className="section-container">
+            <h2 className="section-title">Exercise 5: Component Lifecycle</h2>
+            <button onClick={toggleLifecycleDemo}>
+              {showLifecycleDemo ? 'Unmount' : 'Mount'} Lifecycle Demo
+            </button>
+            {showLifecycleDemo && <LifecycleDemo />}
+          </div>
+          
+          <div id="props" className="section-container">
+            <h2 className="section-title">Exercises 6-7: React Props</h2>
+            <Parent />
+            <div>
+              <h3>Props Validation:</h3>
+              <ValidatedChild message="This is a valid message" />
+            </div>
+          </div>
+          
+          <div id="hooks" className="section-container">
+            <h2 className="section-title">Exercises 8-11: React Hooks</h2>
+            <CounterWithUseState />
+            <CounterWithUseReducer />
+            <JokeFetcher />
+            <AutoFocusForm />
+            <ThemedApp />
+          </div>
+          
+          <div id="forms" className="section-container">
+            <h2 className="section-title">Exercise 12: Forms in React</h2>
+            <FormWithUseState />
+            <FormWithUseRef />
+          </div>
+        
         </div>
       );
     }

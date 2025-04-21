@@ -1,28 +1,51 @@
-<!DOCTYPE html> 
-<html lang="en"> 
-<head> 
-    <meta charset="UTF-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>23BCE1067</title> 
-    <script src="as-9-3.js" defer></script> 
-</head> 
-<body> 
-    <h2>BMI Calculator</h2> 
-    <label for="g">Select Gender:</label> 
-    <select id="g"> 
-        <option value="m">Male</option> 
-        <option value="f">Female</option> 
-    </select> 
-    <br><br> 
-     
-    <label for="w">Enter Your Weight (in pounds):</label> 
-    <input type="number" id="w"> 
-    <br><br> 
-     
-    <label for="h">Enter Your Height (in inches):</label> 
-    <input type="number" id="h"> 
-    <br><br> 
-     
-    <button onclick="c()">Calculate</button> 
-</body> 
+<!DOCTYPE html>
+<html>
+<header>
+    <title>23BCE1091</title>
+</header>
+
+<body>
+    <table border="2px solid black">
+        <tr>
+            <th colspan="3">
+                <b>BMI calculator</b>
+                <select id="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </th>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <b>Enter Your Weight</b><br>
+                (in pounds)
+                <input id="weight" type="number" min="0">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <b>Enter Your Height</b><br>
+                (feet)
+                <input id="feet" type="number" min="0"><br>
+                (inches)
+                <input id="inches" type="number" min="0">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <button onclick="calculate()">calculate</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                YOUR BMI
+            </td>
+            <td colspan="2">
+                <input id="out" type="text" readonly>
+            </td>
+        </tr>
+    </table>
+</body>
+<script src="index.js"></script>
+
 </html>

@@ -1,150 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>23BCE1067</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f5f5f5;
-            font-family: Arial, sans-serif;
-        }
-
-        .clock-container {
-            text-align: center;
-        }
-
-        canvas {
-            border-radius: 50%;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-        }
-
-        h2 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>23BCE1091</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f2f5;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    .clock-container {
+      text-align: center;
+      padding: 30px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+    .clock-container:hover {
+      transform: translateY(-5px);
+    }
+    canvas {
+      border-radius: 50%;
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+      margin: 10px;
+      background: white;
+    }
+    h2 {
+      color: #2c3e50;
+      margin-bottom: 25px;
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+  </style>
 </head>
 <body>
-    <div class="clock-container">
-        <h2>Analog Clock</h2>
-        <canvas id="clockCanvas" width="300" height="300"></canvas>
-    </div>
+  <div class="clock-container">
+    <h2>Analog Clock</h2>
+    <canvas id="clockCanvas" width="300" height="300"></canvas>
+  </div>
 
-    <script>
-        const canvas = document.getElementById('clockCanvas');
-        const ctx = canvas.getContext('2d');
-        const radius = canvas.width / 2 * 0.90; // 90% of canvas width for clock size
+  <script>
+    const canvas = document.getElementById('clockCanvas');
+    const ctx = canvas.getContext('2d');
+    const radius = canvas.width / 2 * 0.90;
+    ctx.translate(canvas.width / 2, canvas.height / 2);
+    setInterval(drawClock, 1000);
+    drawClock();
 
-        ctx.translate(canvas.width / 2, canvas.height / 2);
+    function drawClock() {
+      ctx.clearRect(-canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height);
+      drawFace();
+      drawNumbers();
+      drawTicks();
 
-        setInterval(drawClock, 1000);
-        drawClock(); // Initial draw
+      const now = new Date();
+      const hour = now.getHours() % 12;
+      const minute = now.getMinutes();
+      const second = now.getSeconds();
+      const millisecond = now.getMilliseconds();
 
-        function drawClock() {
-            ctx.clearRect(-canvas.width / 2, -canvas.height / 2, canvas.width, canvas.height);
-            drawFace();
-            drawNumbers();
+      drawHand(hour * 30 + (minute * 0.5), radius * 0.5, radius * 0.07, '#333');
+      drawHand(minute * 6 + (second * 0.1), radius * 0.7, radius * 0.05, '#555');
+      const secondAngle = second * 6 + (millisecond * 0.006);
+      drawHand(secondAngle, radius * 0.85, radius * 0.02, '#D40000');
+      drawPivot();
+    }
 
-            const now = new Date();
-            const hour = now.getHours() % 12;
-            const minute = now.getMinutes();
-            const second = now.getSeconds();
-            const millisecond = now.getMilliseconds();
+    function drawFace() {
+      ctx.beginPath();
+      ctx.arc(0, 0, radius, 0, 2 * Math.PI);
+      ctx.fillStyle = '#fff';
+      ctx.fill();
 
-            drawHand(hour * 30 + (minute * 0.5), radius * 0.5, radius * 0.07, '#333'); // Hour
-            drawHand(minute * 6 + (second * 0.1), radius * 0.7, radius * 0.05, '#555'); // Minute
-            const secondAngle = second * 6 + (millisecond * 0.006);
-            drawHand(secondAngle, radius * 0.85, radius * 0.02, '#D40000'); // Second
+      const grad = ctx.createRadialGradient(0, 0, radius * 0.95, 0, 0, radius * 1.05);
+      grad.addColorStop(0, '#333');
+      grad.addColorStop(0.5, '#fff');
+      grad.addColorStop(1, '#333');
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = radius * 0.1;
+      ctx.stroke();
 
-            drawPivot();
-        }
+      ctx.beginPath();
+      ctx.arc(0, 0, radius * 0.05, 0, 2 * Math.PI);
+      ctx.fillStyle = '#333';
+      ctx.fill();
+    }
 
-        function drawFace() {
-            ctx.beginPath();
-            ctx.arc(0, 0, radius, 0, 2 * Math.PI);
-            ctx.fillStyle = '#fff';
-            ctx.fill();
+    function drawNumbers() {
+      ctx.font = radius * 0.15 + "px Arial";
+      ctx.textBaseline = "middle";
+      ctx.textAlign = "center";
+      ctx.fillStyle = "#333";
+      for (let hour = 1; hour <= 12; hour++) {
+        const angle = hour * Math.PI / 6;
+        const x = radius * 0.80 * Math.sin(angle);
+        const y = -radius * 0.80 * Math.cos(angle);
+        ctx.fillText(hour.toString(), x, y);
+      }
+    }
 
-            const grad = ctx.createRadialGradient(0, 0, radius * 0.95, 0, 0, radius * 1.05);
-            grad.addColorStop(0, '#333');
-            grad.addColorStop(0.5, '#fff');
-            grad.addColorStop(1, '#333');
+    function drawTicks() {
+      for (let i = 0; i < 60; i++) {
+        const angle = i * Math.PI / 30;
+        const inner = radius * (i % 5 === 0 ? 0.90 : 0.95);
+        const outer = radius;
+        const startX = inner * Math.sin(angle);
+        const startY = -inner * Math.cos(angle);
+        const endX = outer * Math.sin(angle);
+        const endY = -outer * Math.cos(angle);
 
-            ctx.strokeStyle = grad;
-            ctx.lineWidth = radius * 0.1;
-            ctx.stroke();
+        ctx.beginPath();
+        ctx.lineWidth = i % 5 === 0 ? 2 : 1;
+        ctx.moveTo(startX, startY);
+        ctx.lineTo(endX, endY);
+        ctx.strokeStyle = '#999';
+        ctx.stroke();
+      }
+    }
 
-            ctx.beginPath();
-            ctx.arc(0, 0, radius * 0.05, 0, 2 * Math.PI);
-            ctx.fillStyle = '#333';
-            ctx.fill();
-        }
+    function drawHand(angle, length, width, color) {
+      const radians = (angle - 90) * Math.PI / 180;
+      ctx.beginPath();
+      ctx.lineWidth = width;
+      ctx.lineCap = "round";
+      ctx.strokeStyle = color;
+      ctx.moveTo(0, 0);
+      ctx.lineTo(length * Math.cos(radians), length * Math.sin(radians));
+      ctx.stroke();
+    }
 
-        function drawNumbers() {
-            ctx.font = radius * 0.15 + "px Arial";
-            ctx.textBaseline = "middle";
-            ctx.textAlign = "center";
-            ctx.fillStyle = "#333";
+    function drawPivot() {
+      ctx.beginPath();
+      ctx.arc(0, 0, radius * 0.04, 0, 2 * Math.PI);
+      ctx.fillStyle = '#D40000';
+      ctx.fill();
 
-            for (let hour = 1; hour <= 12; hour++) {
-                const angle = hour * Math.PI / 6;
-                const x = radius * 0.80 * Math.sin(angle);
-                const y = -radius * 0.80 * Math.cos(angle);
-
-                ctx.fillText(hour.toString(), x, y);
-
-                for (let i = 0; i < 5; i++) {
-                    const minuteAngle = (hour * 5 + i) * Math.PI / 30;
-                    const innerRadius = radius * 0.95;
-                    const outerRadius = radius;
-
-                    const startX = innerRadius * Math.sin(minuteAngle);
-                    const startY = -innerRadius * Math.cos(minuteAngle);
-                    const endX = outerRadius * Math.sin(minuteAngle);
-                    const endY = -outerRadius * Math.cos(minuteAngle);
-
-                    ctx.beginPath();
-                    ctx.lineWidth = 1;
-                    ctx.moveTo(startX, startY);
-                    ctx.lineTo(endX, endY);
-                    ctx.strokeStyle = '#999';
-                    ctx.stroke();
-                }
-            }
-        }
-
-        function drawHand(angle, length, width, color) {
-            const radians = (angle - 90) * Math.PI / 180;
-
-            ctx.beginPath();
-            ctx.lineWidth = width;
-            ctx.lineCap = "round";
-            ctx.strokeStyle = color;
-
-            ctx.moveTo(0, 0);
-            const endX = length * Math.cos(radians);
-            const endY = length * Math.sin(radians);
-            ctx.lineTo(endX, endY);
-            ctx.stroke();
-        }
-
-        function drawPivot() {
-            ctx.beginPath();
-            ctx.arc(0, 0, radius * 0.04, 0, 2 * Math.PI);
-            ctx.fillStyle = '#D40000';
-            ctx.fill();
-
-            ctx.beginPath();
-            ctx.arc(0, 0, radius * 0.02, 0, 2 * Math.PI);
-            ctx.fillStyle = '#fff';
-            ctx.fill();
-        }
-    </script>
+      ctx.beginPath();
+      ctx.arc(0, 0, radius * 0.02, 0, 2 * Math.PI);
+      ctx.fillStyle = '#fff';
+      ctx.fill();
+    }
+  </script>
 </body>
 </html>

@@ -1,69 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>23BCE1067</title>
-    <style>
-        .container {
-            position: relative;
-            width: 400px;
-            height: 400px;
-            border: 2px solid black;
-        }
-        .box {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            text-align: center;
-            line-height: 100px;
-            font-weight: bold;
-            color: white;
-        }
-        #box1 { background-color: red; top: 50px; left: 50px; z-index: 1; }
-        #box2 { background-color: blue; top: 80px; left: 80px; z-index: 2; }
-        #box3 { background-color: green; top: 110px; left: 110px; z-index: 3; }
-    </style>
+  <meta charset="UTF-8" />
+  <title>Z-Index Manipulation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .elements-container {
+      position: relative;
+      width: 400px;
+      height: 300px;
+      border: 2px solid #333;
+      margin-bottom: 20px;
+    }
+    .draggable {
+      position: absolute;
+      width: 150px;
+      height: 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: move;
+      border: 2px solid black;
+      transition: transform 0.2s;
+      user-select: none;
+    }
+    .draggable:hover {
+      transform: scale(1.05);
+    }
+    #element1 {
+      background-color: rgba(255, 0, 0, 0.7);
+      top: 50px;
+      left: 50px;
+      z-index: 1;
+    }
+    #element2 {
+      background-color: rgba(0, 255, 0, 0.7);
+      top: 100px;
+      left: 100px;
+      z-index: 2;
+    }
+    #element3 {
+      background-color: rgba(0, 0, 255, 0.7);
+      top: 150px;
+      left: 150px;
+      z-index: 3;
+    }
+    .controls {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .z-index-display {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-    <h2>Z-Index Manipulation</h2>
-    <div class="container">
-        <div id="box1" class="box">Box 1</div>
-        <div id="box2" class="box">Box 2</div>
-        <div id="box3" class="box">Box 3</div>
+  <div class="container">
+    <div class="elements-container" id="workspace">
+      <div class="draggable" id="element1" data-index="1">
+        Red Element
+        <div class="z-index-display">Z-Index: 1</div>
+      </div>
+      <div class="draggable" id="element2" data-index="2">
+        Green Element
+        <div class="z-index-display">Z-Index: 2</div>
+      </div>
+      <div class="draggable" id="element3" data-index="3">
+        Blue Element
+        <div class="z-index-display">Z-Index: 3</div>
+      </div>
     </div>
-    <br>
-    <div>
-        <label for="element">Choose an element:</label>
-        <select id="element">
-            <option value="box1">Box 1</option>
-            <option value="box2">Box 2</option>
-            <option value="box3">Box 3</option>
-        </select>
-        <label for="zIndex">Set z-index:</label>
-        <input type="number" id="zIndex" value="1">
-        <button onclick="changeZIndex()">Apply</button>
-    </div>
-    <h3>Current Z-Indexes:</h3>
-    <p id="zIndexDisplay"></p>
-    
-    <script>
-        function changeZIndex() {
-            let elementId = document.getElementById("element").value;
-            let newIndex = document.getElementById("zIndex").value;
-            document.getElementById(elementId).style.zIndex = newIndex;
-            displayZIndexes();
-        }
 
-        function displayZIndexes() {
-            let boxes = document.getElementsByClassName("box");
-            let text = "";
-            for (let box of boxes) {
-                text += box.id + ": " + box.style.zIndex + "<br>";
-            }
-            document.getElementById("zIndexDisplay").innerHTML = text;
-        }
-        displayZIndexes();
-    </script>
+    <div class="controls">
+      <button onclick="bringToFront('element1')">Bring Red to Front</button>
+      <button onclick="bringToFront('element2')">Bring Green to Front</button>
+      <button onclick="bringToFront('element3')">Bring Blue to Front</button>
+      <button onclick="resetZIndex()">Reset Z-Index</button>
+    </div>
+  </div>
+
+  <script>
+    let draggedElement = null;
+    let offsetX, offsetY;
+
+    document.addEventListener('mousedown', startDrag);
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('mouseup', stopDrag);
+
+    function startDrag(e) {
+      if (e.target.classList.contains('draggable')) {
+        draggedElement = e.target;
+        const rect = draggedElement.getBoundingClientRect();
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
+        draggedElement.style.cursor = 'grabbing';
+      }
+    }
+
+    function drag(e) {
+      if (draggedElement) {
+        const container = document.getElementById('workspace');
+        const containerRect = container.getBoundingClientRect();
+        let newX = e.clientX - containerRect.left - offsetX;
+        let newY = e.clientY - containerRect.top - offsetY;
+
+        newX = Math.max(0, Math.min(newX, containerRect.width - draggedElement.offsetWidth));
+        newY = Math.max(0, Math.min(newY, containerRect.height - draggedElement.offsetHeight));
+
+        draggedElement.style.left = `${newX}px`;
+        draggedElement.style.top = `${newY}px`;
+      }
+    }
+
+    function stopDrag() {
+      if (draggedElement) {
+        draggedElement.style.cursor = 'move';
+        draggedElement = null;
+      }
+    }
+
+    function bringToFront(elementId) {
+      const elements = ['element1', 'element2', 'element3'];
+      const maxZ = Math.max(...elements.map(id => parseInt(document.getElementById(id).style.zIndex) || 0));
+      elements.forEach((id, index) => {
+        const el = document.getElementById(id);
+        el.style.zIndex = (id === elementId) ? maxZ + 1 : parseInt(el.style.zIndex);
+        el.querySelector('.z-index-display').textContent = `Z-Index: ${el.style.zIndex}`;
+      });
+    }
+
+    function resetZIndex() {
+      const elements = ['element1', 'element2', 'element3'];
+      elements.forEach((id, index) => {
+        const el = document.getElementById(id);
+        el.style.zIndex = index + 1;
+        el.querySelector('.z-index-display').textContent = `Z-Index: ${index + 1}`;
+      });
+    }
+  </script>
 </body>
 </html>

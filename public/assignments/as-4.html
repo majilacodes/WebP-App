@@ -3,51 +3,112 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Exercise 3 - 23BCE1067</title>
+  <title>Exercise 4 - 23BCE1067</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap">
   <style>
+    :root {
+      --bg-color: #121212;
+      --bg-secondary: #1a1a1a;
+      --text-primary: #e0e0e0;
+      --text-secondary: #a0a0a0;
+      --accent-color: #64b5f6;
+      --border-color: #2c2c2c;
+    }
+
     body {
-      background-color: #121212;
-      color: #f0f0f0;
-      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-primary);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.6;
       margin: 0;
       padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     .container {
-      max-width: 800px;
+      max-width: 700px;
       margin: auto;
-      padding: 40px 20px;
+      padding: 60px 20px;
+      flex: 1;
     }
 
     h1 {
+      font-weight: 500;
+      font-size: 2rem;
+      margin-bottom: 3rem;
+      color: var(--text-primary);
       text-align: center;
-      color: #00bcd4;
-      margin-bottom: 30px;
     }
 
-    .link-box {
-      background-color: #1f1f1f;
-      padding: 20px;
-      margin: 15px 0;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-      transition: background-color 0.3s ease;
+    .links-container {
+      display: flex;
+      flex-direction: column;
     }
 
-    .link-box:hover {
-      background-color: #333;
+    .link-item {
+      padding: 0;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      transition: all 0.2s ease;
+      height: 4.5rem; /* Fixed height for consistent spacing */
     }
 
-    .link-box a {
-      color: #90caf9;
+    .link-item:hover {
+      background-color: var(--bg-secondary);
+      padding-left: 0.5rem;
+      border-left: 2px solid var(--accent-color);
+    }
+
+    .link-number {
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: var(--text-secondary);
+      opacity: 0.5;
+      min-width: 2rem;
+      margin-right: 1.5rem;
+    }
+
+    .link-item a {
+      color: var(--text-primary);
       text-decoration: none;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
+      font-weight: 400;
+      transition: color 0.2s ease;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    .link-item:hover a {
+      color: var(--accent-color);
     }
 
     footer {
       text-align: center;
-      margin-top: 40px;
-      color: #888;
+      padding: 2rem 0;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border-color);
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 2rem 1rem;
+      }
+      
+      h1 {
+        font-size: 1.75rem;
+      }
+      
+      .link-item {
+        height: auto;
+        padding: 1rem 0;
+      }
     }
   </style>
 </head>
@@ -55,11 +116,24 @@
   <div class="container">
     <h1>Exercise 4 Web Programming</h1>
 
-    <div class="link-box"><a href="as-4-1.html">Question 1 - HTML Form</a></div>
-    <div class="link-box"><a href="as-4-2.html">Question 2 - Resume Form</a></div>
-    <div class="link-box"><a href="as-4-3.html">Question 3 - Feedback Form</a></div>
-   </div>
+    <div class="links-container">
+      <div class="link-item">
+        <div class="link-number">1</div>
+        <a href="as-4-1.html">Question 1 - HTML Form</a>
+      </div>
+      
+      <div class="link-item">
+        <div class="link-number">2</div>
+        <a href="as-4-2.html">Question 2 - Resume Form</a>
+      </div>
+      
+      <div class="link-item">
+        <div class="link-number">3</div>
+        <a href="as-4-3.html">Question 3 - Feedback Form</a>
+      </div>
+    </div>
+  </div>
 
-  <footer>Created by Mishti Mattu | 23BCE1067</footer>
+  <footer>Akshat Majila | 23BCE1091</footer>
 </body>
 </html>

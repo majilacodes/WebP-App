@@ -1,14 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>23BCE1067</title>
-  <link rel="stylesheet" href="as-7-2.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>23BCE1091</title>
+  <link rel="stylesheet" href="ex-7-2.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url('https://img.freepik.com/free-photo/vivid-blurred-colorful-background-58702-2563.jpg?semt=ais_hybrid') center/cover no-repeat;
+      color: #333;
+      background-color: rgb(233, 209, 177);
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .rainbow {
+      font-size: 36px;
+      font-weight: bold;
+      background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .description {
+      column-count: 2;
+      column-gap: 20px;
+      line-height: 30pt;
+      margin: 20px auto;
+      max-width: 800px;
+    }
+
+    .ball {
+      display: inline-block;
+      animation: play-ball 4s infinite;
+    }
+
+    .dog {
+      width: 60px;
+      height: 60px;
+      background: url('https://cdn-icons-png.flaticon.com/512/616/616408.png') center/contain no-repeat;
+      margin: 30px auto;
+    }
+
+    @keyframes play-ball {
+      0% {
+        transform: translateX(0) rotate(0deg);
+      }
+      25% {
+        transform: translateX(50px) rotate(45deg);
+      }
+      50% {
+        transform: translateX(100px) rotate(90deg) skew(10deg);
+      }
+      75% {
+        transform: translateX(150px) rotate(135deg);
+      }
+      100% {
+        transform: translateX(200px) rotate(180deg);
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
 
+  <div class="container">
     <h1 class="rainbow">Welcome to the Pet Animals Page</h1>
 
     <div class="description">
@@ -18,13 +80,12 @@
       <p>Fish are peaceful pets.</p>
     </div>
 
-    <div class="background-center"></div>
-
-    <!-- SVG Ball (dog playing with ball) -->
     <svg width="100" height="100" class="ball" xmlns="http://www.w3.org/2000/svg">
       <circle cx="50" cy="50" r="30" fill="red" />
     </svg>
 
+    <div class="dog"></div>
   </div>
+
 </body>
 </html>

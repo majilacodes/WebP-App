@@ -1,191 +1,200 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>23BCE1067</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-        .form-section {
-            border: 1px solid #ccc;
-            padding: 15px;
-            margin-bottom: 20px;
-            width: 500px;
-        }
-        .section-title {
-            color: red;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-        .form-row {
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-        }
-        .label {
-            width: 100px;
-            text-align: left;
-        }
-        .colon {
-            margin: 0 10px;
-        }
-        input[type="text"],
-        input[type="password"],
-        input[type="email"],
-        input[type="date"] {
-            width: 200px;
-            padding: 3px;
-        }
-        select {
-            width: 150px;
-        }
-        .address-input {
-            width: 100%;
-            height: 50px;
-        }
-        .degree-section {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-        .hobbies-section {
-            display: flex;
-            gap: 20px;
-        }
-        .file-section {
-            margin-top: 20px;
-        }
-        .degree-groups {
-            margin-top: 20px;
-        }
-        .degree-groups ul {
-            margin: 5px 0;
-            padding-left: 20px;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Updated Resume Form - 23BCE1091</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    .form-section {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-bottom: 20px;
+      width: 500px;
+    }
+
+    .section-title {
+      color: blue;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .form-row {
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .label {
+      width: 100px;
+      text-align: left;
+    }
+
+    .colon {
+      margin: 0 10px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="date"],
+    input[type="color"] {
+      width: 200px;
+      padding: 3px;
+    }
+
+    select {
+      width: 150px;
+    }
+
+    .address-input {
+      width: 100%;
+      height: 60px;
+      padding: 5px;
+    }
+
+    .degree-section {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .hobbies-section {
+      display: flex;
+      gap: 20px;
+    }
+
+    .file-section {
+      margin-top: 20px;
+    }
+
+    .file-section input[type="submit"] {
+      margin-left: 15px;
+      padding: 5px 10px;
+    }
+
+    .degree-groups {
+      margin-top: 20px;
+    }
+
+    .degree-groups ul {
+      margin: 5px 0;
+      padding-left: 20px;
+    }
+  </style>
 </head>
 <body>
-    <form>
-        <!-- Personal Details Section -->
-        <div class="form-section">
-            <div class="section-title">Personal Details</div>
-            
-            <div class="form-row">
-                <span class="label">Name</span>
-                <span class="colon">:</span>
-                <input type="text" name="name" required>
-            </div>
 
-            <div class="form-row">
-                <span class="label">Password</span>
-                <span class="colon">:</span>
-                <input type="password" name="password" required>
-            </div>
+  <form>
+    <!-- Personal Details Section -->
+    <div class="form-section">
+      <div class="section-title">Personal Information</div>
 
-            <div class="form-row">
-                <span class="label">E-mail id</span>
-                <span class="colon">:</span>
-                <input type="email" name="email" required>
-            </div>
-
-            <div class="form-row">
-                <span class="label">Gender</span>
-                <span class="colon">:</span>
-                <input type="radio" name="gender" value="male" id="male">
-                <label for="male">Male</label>
-                <input type="radio" name="gender" value="female" id="female" checked>
-                <label for="female">Female</label>
-            </div>
-
-            <div class="form-row">
-                <span class="label">DOB</span>
-                <span class="colon">:</span>
-                <input type="text" name="dob" placeholder="mm/dd/yyyy">
-            </div>
-
-            <div class="form-row">
-                <span class="label">Mobile#</span>
-                <span class="colon">:</span>
-                <input type="text" name="mobile">
-            </div>
-        </div>
-
-        <!-- Educational Qualification Section -->
-        <!-- Educational Qualification Section -->
-<div class="form-section">
-    <div class="section-title">Educational Qualification</div>
-
-    <div class="form-row">
-        <span class="label">Degree</span>
+      <div class="form-row">
+        <label for="name" class="label">Name</label>
         <span class="colon">:</span>
-        <select name="degree" required>
-            <option value="">-- Select Degree --</option>
-            <optgroup label="UG">
-                <option value="be">BE</option>
-                <option value="btech">BTech</option>
-                <option value="bsc">BSc</option>
-                <option value="ba">BA</option>
-                <option value="bca">BCA</option>
-                <option value="bba">BBA</option>
-                <option value="ug_others">Others</option>
-            </optgroup>
-            <optgroup label="PG">
-                <option value="me">ME</option>
-                <option value="mtech">MTech</option>
-                <option value="msc">MSc</option>
-                <option value="ma">MA</option>
-                <option value="mca">MCA</option>
-                <option value="mba">MBA</option>
-                <option value="pg_others">Others</option>
-            </optgroup>
-            <optgroup label="PhD">
-                <option value="phd_eng">Engineering</option>
-                <option value="phd_sci">Science</option>
-                <option value="phd_mgmt">Management</option>
-                <option value="phd_others">Others</option>
-            </optgroup>
-        </select>
+        <input type="text" name="name" id="name" required />
+      </div>
+
+      <div class="form-row">
+        <label for="password" class="label">Password</label>
+        <span class="colon">:</span>
+        <input type="password" name="password" id="password" required />
+      </div>
+
+      <div class="form-row">
+        <label for="email" class="label">E-mail ID</label>
+        <span class="colon">:</span>
+        <input type="email" name="email" id="email" required />
+      </div>
+
+      <div class="form-row">
+        <span class="label">Gender</span>
+        <span class="colon">:</span>
+        <input type="radio" name="gender" value="male" id="male" />
+        <label for="male">Male</label>
+        <input type="radio" name="gender" value="female" id="female" checked />
+        <label for="female">Female</label>
+      </div>
+
+      <div class="form-row">
+        <label for="dob" class="label">DOB</label>
+        <span class="colon">:</span>
+        <input type="date" name="dob" id="dob" />
+      </div>
+
+      <div class="form-row">
+        <label for="mobile" class="label">Mobile#</label>
+        <span class="colon">:</span>
+        <input type="text" name="mobile" id="mobile" />
+      </div>
     </div>
 
-    <div class="form-row">
+    <!-- Educational Qualification Section -->
+    <div class="form-section">
+      <div class="section-title">Education Background</div>
+
+      <div class="form-row">
+        <span class="label">Degree</span>
+        <span class="colon">:</span>
+        <div class="degree-section">
+          <select name="degree" id="degree">
+            <option value="">-- Select Degree --</option>
+            <option value="ug">UG</option>
+            <option value="pg">PG</option>
+            <option value="phd">PhD</option>
+          </select>
+          <span>Engineering:</span>
+          <select name="engineering" id="engineering">
+            <option value="">-- Select Branch --</option>
+            <option value="cse">CSE</option>
+            <option value="ece">ECE</option>
+            <option value="eee">EEE</option>
+            <option value="civil">CIVIL</option>
+            <option value="mech">MECH</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
         <span class="label">Hobbies</span>
         <span class="colon">:</span>
         <div class="hobbies-section">
-            <div>
-                <input type="checkbox" id="chess" name="hobbies">
-                <label for="chess">Playing chess</label>
-            </div>
-            <div>
-                <input type="checkbox" id="books" name="hobbies">
-                <label for="books">Reading Books</label>
-            </div>
+          <div>
+            <input type="checkbox" id="chess" name="hobbies" value="chess" />
+            <label for="chess">Playing chess</label>
+          </div>
+          <div>
+            <input type="checkbox" id="books" name="hobbies" value="books" />
+            <label for="books">Reading books</label>
+          </div>
         </div>
-    </div>
+      </div>
 
-    <div class="form-row">
-        <span class="label">Favourite Color</span>
+      <div class="form-row">
+        <label for="color" class="label">Fav. Color</label>
         <span class="colon">:</span>
-        <input type="color" name="color">
+        <input type="color" name="color" id="color" />
+      </div>
     </div>
-</div>
 
+    <!-- Address Section -->
+    <div class="form-section">
+      <div class="section-title">Residential Address</div>
+      <textarea class="address-input" name="address" placeholder="Enter your address..."></textarea>
+    </div>
 
-        <!-- Address Section -->
-        <div class="form-section">
-            <div class="section-title">Address</div>
-            <textarea class="address-input"></textarea>
-        </div>
+    <!-- File Upload and Submit Section -->
+    <div class="file-section">
+      <label for="resume">Attach Resume:</label>
+      <input type="file" name="resume" id="resume" />
+      <input type="submit" value="Submit" />
+    </div>
+  </form>
 
-        <!-- File Upload and Submit Section -->
-        <div class="file-section">
-            <label>Attach Resume:</label>
-            <input type="file">
-            <input type="submit" value="Submit">
-        </div>
-
-        <!-- Degree Groups Information -->
-        
-    </form>
 </body>
 </html>

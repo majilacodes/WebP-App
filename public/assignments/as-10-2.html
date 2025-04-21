@@ -1,72 +1,112 @@
-<!DOCTYPE html> 
-<html> 
-<head> 
-    <title>23BCE1067</title> 
-</head> 
-<body> 
-    <h1 id="t">Welcome to My Page</h1> 
-    <hr> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>23BCE1091</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .input-field {
+      margin-right: 10px;
+    }
+    .info {
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
 
-    <label>Enter email:</label> 
-    <input type="text" name="u"> 
-    <br><br> 
+  <center>
+    <hr style="width:100%; border: 2px solid black;">
+    <h1 id="title">Original Title</h1>
+    <hr style="width:100%; border: 2px solid black;">
+  </center>
 
-    <label>Preferred Language:</label> 
-    <input type="radio" name="g" value="English"> English 
-    <input type="radio" name="g" value="French"> French 
-    <br><br> 
+  <label>Enter username:</label>
+  <input type="text" name="username" placeholder="Enter username">
+  <br><br>
 
-    <p class="i">This is the first paragraph</p> 
-    <p class="i">Hope you have a great day ahead.</p> 
-    <p class="i">Keep smiling and stay positive!</p> 
+  <label>Gender:</label>
+  <input type="radio" name="gender" value="Male"> Male
+  <input type="radio" name="gender" value="Female"> Female
+  <br><br>
 
-    <ul> 
-        <li>Wisdom</li> 
-        <li>Courage</li> 
-        <li>Kindness</li> 
-    </ul> 
-    <br> 
+  <p class="info">HI, This is a paragraph about the Indian heritage.</p>
+  <p class="info">Hello, it was a pleasure to meet you. Hope to see you soon.</p>
+  <p>Past is in the past, Future is yet to come, You only have the present to yourself, MAKE THE BEST OF IT!!</p>
 
-    <input type="text" class="f" value="Box 1"> 
-    <input type="text" class="f" value="Box 2"> 
-    <br><br> 
+  <ul>
+    <li>Humility</li>
+    <li>Love</li>
+    <li>Empathy</li>
+  </ul>
 
-    <label>Interests:</label> 
-    <input type="checkbox" class="h" value="Art"> Art 
-    <input type="checkbox" class="h" value="Music"> Music 
-    <input type="checkbox" class="h" value="Photography"> Photography 
+  <input type="text" class="input-field" placeholder="Field 1">
+  <input type="text" class="input-field" placeholder="Field 2">
+  <br><br>
 
-    <script>
-        document.getElementById("t").textContent = "Welcome To My Page"; 
+  <label>Hobbies:</label>
+  <input type="checkbox" class="hobby" value="Reading"> Reading
+  <input type="checkbox" class="hobby" value="Sports"> Sports
+  <input type="checkbox" class="hobby" value="Music"> Music
 
-        document.getElementsByName("u")[0].value = "user@example.com"; 
+  <script>
+    // Update title
+    document.getElementById('title').textContent = "Updated Title";
 
-        let r = document.getElementsByName("g"); 
-        for (let x of r) 
-            if (x.checked) 
-                console.log(x.value); 
+    // Fill in username
+    document.getElementsByName('username')[0].value = "John Doe";
 
-        console.log("Total <p> elements:", document.getElementsByTagName("p").length); 
+    // Log selected gender if any
+    let radioButtons = document.getElementsByName('gender');
+    for (let radio of radioButtons) {
+      if (radio.checked) {
+        console.log("Selected gender:", radio.value);
+      }
+    }
 
-        let l = document.getElementsByTagName("ul")[0].getElementsByTagName("li"); 
-        for (let x of l) 
-            console.log("List item:", x.textContent); 
+    // Log all paragraphs
+    let paragraphs = document.getElementsByTagName('p');
+    console.log("Total <p> elements:", paragraphs.length);
 
-        let f = document.getElementsByClassName("f"); 
-        for (let x of f) 
-            x.style.backgroundColor = "lightgreen"; 
+    // Log all list items
+    let listItems = document.getElementsByTagName('li');
+    for (let li of listItems) {
+      console.log("List item:", li.textContent);
+    }
 
-        document.querySelector(".i").textContent = "This is an updated paragraph."; 
+    // Change background of input fields
+    let iFields = document.getElementsByClassName('input-field');
+    for (let field of iFields) {
+      field.style.backgroundColor = "lightblue";
+    }
 
-        document.querySelector("input[name='g']").checked = true; 
+    // Update the first .info paragraph's text
+    let firstInfo = document.querySelector('.info');
+    if (firstInfo) {
+      firstInfo.textContent = "This is the first info paragraph";
+    }
 
-        document.querySelectorAll(".i").forEach(x => 
-            console.log(x.textContent)); 
+    // Log all .info paragraphs
+    let infoParas = document.querySelectorAll('.info');
+    infoParas.forEach(p => console.log(p.textContent));
 
-        document.querySelectorAll(".h").forEach(x => { 
-            x.checked = true; 
-            console.log("Checked interest:", x.value); 
-        }); 
-    </script> 
-</body> 
+    // Check all hobby checkboxes and log them
+    let checkboxes = document.querySelectorAll('.hobby');
+    checkboxes.forEach(checkbox => {
+      checkbox.checked = true;
+      console.log("Checked hobby:", checkbox.value);
+    });
+
+    // Auto-check the first gender radio button
+    let firstRadio = document.querySelector('input[name="gender"]');
+    if (firstRadio) {
+      firstRadio.checked = true;
+    }
+  </script>
+
+</body>
 </html>
